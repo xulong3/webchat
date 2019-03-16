@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asiainfo.common.service.BaseExceptionService;
+import com.asiainfo.common.service.ConfigService;
+import com.asiainfo.entity.Config;
 import com.asiainfo.entity.User;
 import com.asiainfo.exception.ActiveAccountException;
 import com.asiainfo.exception.MD5Exception;
@@ -31,6 +33,8 @@ public class SsoController {
 	private BaseExceptionService baseExceptionService;
 	@Resource
 	private RedisSessionService redisSessionService;
+	@Resource
+	private ConfigService configService;
 	
 	@RequestMapping("/applyAccount")
 	public String applyAccount(User user){
@@ -61,6 +65,7 @@ public class SsoController {
 		
 		//设置账号
 		user.setAccount(account);
+		
 		
 		//再调用远程发邮件服务，将账号发送到注册邮箱，并附带一条激活此账号的链接，三天内有效
 		try {
@@ -135,6 +140,8 @@ public class SsoController {
 		//登录成功，调用redis服务,将user实体的信息放入redis中
 		try {
 			String s = this.redisSessionService.beginSession(user);
+			
+			LoggerUtil.info(this.getClass(), s);
 			return WebResult.LOGIN_SUCCESS;
 			
 		} catch (ObjectToMapException e) {

@@ -8,17 +8,16 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.asiainfo.util.service.JdbcService;
+import com.asiainfo.util.service.impl.JdbcServiceImpl;
+
 public class EmailUtil {
-	private static String ACTIVE_ACCOUNT_URL="http://localhost:8081/sso/activeAccount?account=";
-	
-	private static final String VIRTUAL_EMAIL="17853500586@163.com";
+	private static String ACTIVE_ACCOUNT_URL="http://localhost:8081/webchat-portal/activeAccount?account=";
+	private static JdbcService jdbcService=new JdbcServiceImpl();
 	
 	
 	public static void sendSimpleMail(String title,String receiver,String content) throws Exception{
-		//开启虚拟邮箱
-		if(VIRTUAL_EMAIL!=null){
-			receiver=VIRTUAL_EMAIL;
-		}
+		
 		
 		Properties prop = new Properties();
 		prop.setProperty("mail.host", "smtp.163.com");
@@ -34,7 +33,7 @@ public class EmailUtil {
 		
 		//3、使用邮箱的用户名和密码连上邮件服务器，发送邮件时，发件人需要提交邮箱的用户名和密码给smtp服务器，用户名和密码都通过验证之后才能够正常发送邮件给收件人。
 		
-		ts.connect("smtp.163.com", "13121398827", DESUtil.decryption("XXWwxaUX5VR77SBtOCZSsg==", null));
+		ts.connect("smtp.163.com", getSender(), DESUtil.decryption(getSenderPassword(), getDesKey()));
 		
 		
 		//4、创建邮件对象
@@ -44,7 +43,11 @@ public class EmailUtil {
 		message.setFrom(new InternetAddress(getSender()));
 		
 		//指明邮件的收件人
-		
+		//查询虚拟邮箱
+		String virtualEmail = getVirtualEmail();
+		if(virtualEmail!=null){
+			receiver=virtualEmail; 
+		}
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 		//邮件的标题
 		message.setSubject(title);
@@ -60,13 +63,34 @@ public class EmailUtil {
 		
 	}
 	
-	
-	
-	
-	private static String getSender(){
-		return "13121398827@163.com";
+	private static String getVirtualEmail() throws Exception{
+		String status = jdbcService.queryConfigValueByKey("virtual_email_status");
+		if("on".equals(status)){
+			String virtualEmail = jdbcService.queryConfigValueByKey("virtual_email");
+			return virtualEmail;
+		}else{
+			 
+			return null;
+		}
 	}
 	
+	
+	
+	public static String getSender() throws Exception{
+		String sender = jdbcService.queryConfigValueByKey("email_sender");
+		return sender;
+	}
+	
+	
+	public static String getSenderPassword() throws Exception{
+		String password = jdbcService.queryConfigValueByKey("email_sender_password");
+		return password;
+	}
+	
+	public static String getDesKey() throws Exception{
+		String key = jdbcService.queryConfigValueByKey("des_key");
+		return key;
+	}
 	
 	public static String getActiveAccountTemplate(String account){
 		ACTIVE_ACCOUNT_URL=ACTIVE_ACCOUNT_URL+account;

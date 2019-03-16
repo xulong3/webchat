@@ -15,12 +15,7 @@ public class DESUtil {
 	private static final String DEFAULT_KEY="123456";
 	private static final String DES_ALGORITHM = "DES";
 	
-	public static void main(String[] args) throws Exception {
-		String s = DESUtil.encryption("x24l58win85", null);
-		System.out.println(s);
-		String s1 = DESUtil.decryption("XXWwxaUX5VR77SBtOCZSsg==", null);
-		System.out.println(s1);
-	}
+	
 	
 	/**
 	 * DES加密
