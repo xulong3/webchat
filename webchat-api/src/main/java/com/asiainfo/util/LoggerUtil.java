@@ -13,25 +13,6 @@ public class LoggerUtil {
 		
 		
 	}
-	public static void error(Class<?> c,String msg){
-		Logger logger = LoggerFactory.getLogger(c);
-		logger.error(msg);
-		
-		
-		
-	}
-	public static void debug(Class<?> c,String msg){
-		Logger logger = LoggerFactory.getLogger(c);
-		logger.debug(msg);
-		
-		
-		
-	}
-	public static void warn(Class<?> c,String msg){
-		Logger logger = LoggerFactory.getLogger(c);
-		logger.warn(msg);
-		
-		
-		
-	}
+	
+	
 }

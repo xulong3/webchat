@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.asiainfo.common.service.BaseExceptionService;
 import com.asiainfo.common.service.ConfigService;
-import com.asiainfo.entity.Config;
 import com.asiainfo.entity.User;
 import com.asiainfo.exception.ActiveAccountException;
 import com.asiainfo.exception.MD5Exception;

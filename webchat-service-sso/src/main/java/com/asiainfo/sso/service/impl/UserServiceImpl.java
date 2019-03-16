@@ -89,17 +89,6 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
-	@Override
-	public String loginByAccount(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String loginByEmail(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int queryUserCountByEmail(String email) {
