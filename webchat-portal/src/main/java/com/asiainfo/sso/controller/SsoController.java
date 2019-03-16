@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asiainfo.common.service.BaseExceptionService;
-import com.asiainfo.common.service.ConfigService;
 import com.asiainfo.entity.User;
 import com.asiainfo.exception.ActiveAccountException;
 import com.asiainfo.exception.MD5Exception;
@@ -32,8 +31,7 @@ public class SsoController {
 	private BaseExceptionService baseExceptionService;
 	@Resource
 	private RedisSessionService redisSessionService;
-	@Resource
-	private ConfigService configService;
+	
 	
 	@RequestMapping("/applyAccount")
 	public String applyAccount(User user){
@@ -138,10 +136,11 @@ public class SsoController {
 		
 		//登录成功，调用redis服务,将user实体的信息放入redis中
 		try {
+			user.setStatus(1);
 			String s = this.redisSessionService.beginSession(user);
 			
 			LoggerUtil.info(this.getClass(), s);
-			return WebResult.LOGIN_SUCCESS;
+			return user.getAccount();
 			
 		} catch (ObjectToMapException e) {
 			this.baseExceptionService.saveBaseException(e);

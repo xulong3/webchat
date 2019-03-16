@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.asiainfo.sso.dao.SsoDao">
+<mapper namespace="com.asiainfo.sso.dao.UserDao">
 
 	<resultMap type="com.asiainfo.entity.User" id="userMap">
 		<id property="id" column="id"/>
@@ -12,6 +12,7 @@
 		<result property="regTime" column="reg_time"/>
 		<result property="actTime" column="act_time"/>
 		<result property="email" column="email"/>
+		<result property="status" column="status"/>
 	</resultMap>
 
 
@@ -20,8 +21,8 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="user">
-		insert into user(account,nickname,password,email,available,reg_time) 
-		values(#{account},#{nickname},#{password},#{email},#{available},#{regTime})
+		insert into user(account,nickname,password,email,available,reg_time,status) 
+		values(#{account},#{nickname},#{password},#{email},#{available},#{regTime},0)
 	</insert>
  	
  	<update id="updateUserAvailable" parameterType="user">

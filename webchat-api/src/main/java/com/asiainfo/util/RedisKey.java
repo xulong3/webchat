@@ -2,6 +2,6 @@ package com.asiainfo.util;
 
 public final class RedisKey {
 	
-	public static final String USER_INFO_prefix="user_";
+	public static final String TOKEN_KEY_PREFIX="token_";
 
 }

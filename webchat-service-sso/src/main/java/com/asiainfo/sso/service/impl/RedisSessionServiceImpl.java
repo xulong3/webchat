@@ -1,5 +1,6 @@
 package com.asiainfo.sso.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -23,7 +24,8 @@ public class RedisSessionServiceImpl implements RedisSessionService{
 	@Override
 	public String beginSession(User user) {
 		Jedis jedis = jedisPool.getResource();
-		String redisKey=RedisKey.USER_INFO_prefix+user.getAccount();
+		String redisKey=RedisKey.TOKEN_KEY_PREFIX+user.getAccount();
+		
 		if(jedis.exists(redisKey)){
 			//如果已经存在这个key，尽管这个key的登录状态是已登录，也无所谓，照样登录，登录一万次都可以
 		}
@@ -37,7 +39,31 @@ public class RedisSessionServiceImpl implements RedisSessionService{
 		//成功返回ok
 		String res = jedis.hmset(redisKey, userMap);
 		LoggerUtil.info(this.getClass(), "----------"+res);
+		jedis.close();
 		return "yes";
+	}
+
+	@Override
+	public String isSessionExpire(String token) {
+		
+		String redisKey=RedisKey.TOKEN_KEY_PREFIX+token;
+		Jedis jedis = jedisPool.getResource();
+		Boolean b = jedis.exists(redisKey);
+		if(b){
+			return "no";
+		}else{
+			
+			return "yes";
+		}
+	}
+
+	@Override
+	public int queryUserStatus(String token) {
+		String redisKey=RedisKey.TOKEN_KEY_PREFIX+token;
+		Jedis jedis = jedisPool.getResource();
+		List<String> values = jedis.hmget(redisKey, "status");
+		int status = Integer.parseInt(values.get(0));
+		return status;
 	}
 
 }

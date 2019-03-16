@@ -1,1 +1,4 @@
+com\asiainfo\sso\service\impl\UserServiceImpl.class
+com\asiainfo\sso\dao\UserDao.class
+com\asiainfo\sso\service\impl\RedisSessionServiceImpl.class
 com\asiainfo\SsoServiceStarter.class

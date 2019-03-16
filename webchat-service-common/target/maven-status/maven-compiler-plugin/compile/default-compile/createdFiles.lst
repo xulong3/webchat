@@ -1,1 +1,4 @@
 com\asiainfo\CommonServiceStarter.class
+com\asiainfo\common\service\impl\BaseExceptionServiceImpl.class
+com\asiainfo\common\dao\BaseExceptionDao.class
+com\asiainfo\common\service\impl\ConfigServiceImpl.class
