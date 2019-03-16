@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+body{
+	background-color: blue;
+}
+h1{
+	width: 200px;
+	margin-left: 240px;
+	margin-top: 240px;
+	color: white;
+}
+
+#content{
+	
+	width: 250px;
+	height: 320px;
+	background-color: white;
+	margin-left: 900px;
+	margin-top: -150px;
+	padding-top: 30px;
+	padding-left: 20px;
+	border-radius: 10px;
+}
+
+.form-control{
+	width: 200px;
+	height: 25px;
+	border-color: green;
+}
+
+#info{
+	width: 200px;
+	height: 24px;
+}
+#apply-btn{
+	border-radius: 5px;
+}

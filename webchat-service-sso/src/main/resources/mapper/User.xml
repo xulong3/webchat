@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.sso.dao.SsoDao">
+
+	<resultMap type="com.asiainfo.entity.User" id="userMap">
+		<id property="id" column="id"/>
+		<result property="account" column="account"/>
+		<result property="nickname" column="nickname"/>
+		<result property="password" column="password"/>
+		<result property="available" column="available"/>
+		<result property="regTime" column="reg_time"/>
+		<result property="actTime" column="act_time"/>
+		<result property="email" column="email"/>
+	</resultMap>
+
+
+	<select id="selectUserMaxId" resultType="int">
+		select ifnull(max(id),0) as maxId from user
+	</select>
+	
+	<insert id="insertUser" parameterType="user">
+		insert into user(account,nickname,password,email,available,reg_time) 
+		values(#{account},#{nickname},#{password},#{email},#{available},#{regTime})
+	</insert>
+ 	
+ 	<update id="updateUserAvailable" parameterType="user">
+ 		update user set available=#{available} where account=#{account}
+ 	</update>
+ 	
+ 	<update id="updateUserActTime" parameterType="user">
+ 		update user set act_time=#{actTime} where account=#{account}
+ 	</update>
+ 	
+ 	<select id="selectUserByToken"  parameterType="map" resultMap="userMap">
+ 		select * from user where (account=#{account} or email=#{email}) and available=1
+ 	
+ 	</select>
+ 	
+ 	<select id="selectUserCountByEmail" parameterType="string" resultType="int">
+ 		select count(1) from user where email=#{email}
+ 	</select>
+
+	<select id="selectUserAvailable" parameterType="string" resultType="int">
+		select available from user where account=#{account}
+	</select>
+</mapper>
