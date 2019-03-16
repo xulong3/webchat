@@ -2,11 +2,17 @@ package com.asiainfo.sso.service.impl;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import com.asiainfo.entity.User;
+import com.asiainfo.sso.dao.UserDao;
 import com.asiainfo.sso.service.UserService;
 
 public class UserServiceImpl implements UserService{
 
+	@Resource
+	private UserDao userDao;
+	
 	@Override
 	public String saveUser(User user) {
 		// TODO Auto-generated method stub
@@ -57,8 +63,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User queryUserByToken(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = this.userDao.selectUserByToken(map);
+		return user;
 	}
 
 }

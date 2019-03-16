@@ -17,9 +17,7 @@
 		<span id="way-span">账号</span><input type="text" name="token" id="token" class="form-control">
 		密码<input type="password" name="password" id="password" class="form-control">
 		
-		<div id="remember-div">
-			记住我<input type="checkbox" name="rememberMe" id="rememberMe">
-		</div>
+		
 		<br>
 		
 		<a id="login-way" href="javascript:void(0)">使用邮箱登录</a><br><br>

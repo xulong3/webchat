@@ -5,16 +5,6 @@ import java.util.Map;
 import redis.clients.jedis.Jedis;
 
 public class RedisUtil {
-	/**
-	 * 检查某个key是否存在
-	 * @param jedis
-	 * @param key
-	 * @return
-	 */
-	public static boolean containsKey(Jedis jedis,String key){
-		Boolean b = jedis.exists(key);
-		return b;
-	}
 	
 	/**
 	 * 放入一个hash

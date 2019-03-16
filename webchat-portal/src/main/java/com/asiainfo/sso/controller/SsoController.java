@@ -26,7 +26,7 @@ import com.asiainfo.util.WebResult;
 @RestController
 public class SsoController {
 	@Resource
-	private UserService ssoService;
+	private UserService userService;
 	@Resource
 	private BaseExceptionService baseExceptionService;
 	@Resource
@@ -38,7 +38,7 @@ public class SsoController {
 		
 		
 		//先判断该邮箱是否已经被注册过了
-		int count = this.ssoService.queryUserCountByEmail(user.getEmail());
+		int count = this.userService.queryUserCountByEmail(user.getEmail());
 		if(count>0){
 			return WebResult.Email_UNAVAILABLE;
 		}
@@ -47,7 +47,7 @@ public class SsoController {
 		String account=null;
 		try {
 			//提交账号申请后，将数据插入数据库，但激活状态设为未激活
-			account=ssoService.saveUser(user);
+			account=userService.saveUser(user);
 			
 		} catch (SaveUserException e) {
 			e.setMessage(ExceptionUtil.getExceptionMessage(e));
@@ -64,7 +64,7 @@ public class SsoController {
 		
 		//再调用远程发邮件服务，将账号发送到注册邮箱，并附带一条激活此账号的链接，三天内有效
 		try {
-			ssoService.sendActiveAccountEmail(user);
+			userService.sendActiveAccountEmail(user);
 			return WebResult.APPLY_ACCOUNT_SUCCESS;
 		} catch (SendEmailException e) {
 			baseExceptionService.saveBaseException(e);
@@ -80,13 +80,13 @@ public class SsoController {
 	@RequestMapping("/activeAccount")
 	public String activeAccount(String account){
 		//先查询该账户是否已激活
-		String s = this.ssoService.isUserAvailable(account);
+		String s = this.userService.isUserAvailable(account);
 		if("yes".equals(s)){
 			return PageTemplate.getActiveAccountPage(WebResult.Account_Activated);
 		}
 		
 		try {
-			this.ssoService.activeAccount(account);
+			this.userService.activeAccount(account);
 			return PageTemplate.getActiveAccountPage(WebResult.ACTIVE_ACCOUNT_SUCCESS);
 		} catch (ActiveAccountException e) {
 			e.setMessage(ExceptionUtil.getExceptionMessage(e));
@@ -98,11 +98,10 @@ public class SsoController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(String token,String password,String rememberMe,String loginWay){
+	public String login(String token,String password,String loginWay){
 		
 		LoggerUtil.info(this.getClass(),token);
 		LoggerUtil.info(this.getClass(),password);
-		LoggerUtil.info(this.getClass(),rememberMe);
 		LoggerUtil.info(this.getClass(),loginWay);
 		
 		//先根据token查询是否有该用户
@@ -115,7 +114,7 @@ public class SsoController {
 			param.put("account", "");
 			param.put("email", token);
 		}
-		User user = this.ssoService.queryUserByToken(param);
+		User user = this.userService.queryUserByToken(param);
 		if(user==null){
 			return WebResult.USER_NOT_EXIST;
 		}
@@ -136,11 +135,8 @@ public class SsoController {
 		//登录成功，调用redis服务,将user实体的信息放入redis中
 		try {
 			String s = this.redisSessionService.beginSession(user);
-			if("no".equals(s)){
-				return WebResult.LOGIN_FAIL;
-			}else{
-				return WebResult.LOGIN_SUCCESS;
-			}
+			return WebResult.LOGIN_SUCCESS;
+			
 		} catch (ObjectToMapException e) {
 			this.baseExceptionService.saveBaseException(e);
 			return WebResult.LOGIN_FAIL;

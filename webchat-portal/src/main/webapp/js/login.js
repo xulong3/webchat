@@ -91,7 +91,6 @@ $(function(){
             data: {
             	"token":token,
             	"password":password,
-            	"rememberMe":rememberMe,
             	"loginWay":t
             },
             success:function (result) {

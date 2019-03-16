@@ -14,7 +14,7 @@
     <dubbo:registry protocol="zookeeper" address="localhost:2181" />
 
     <!-- 生成远程服务代理，可以和本地bean一样使用service -->
-    <dubbo:reference id="ssoService" interface="com.asiainfo.sso.service.SsoService" />
+    <dubbo:reference id="userService" interface="com.asiainfo.sso.service.UserService" />
     <dubbo:reference id="baseExceptionService" interface="com.asiainfo.common.service.BaseExceptionService" />
     <dubbo:reference id="redisSessionService" interface="com.asiainfo.sso.service.RedisSessionService" />
 </beans>
