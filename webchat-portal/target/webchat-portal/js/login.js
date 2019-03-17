@@ -94,9 +94,10 @@ $(function(){
             	"loginWay":t
             },
             success:function (result) {
-            	if(result=="登录成功！"){
-            		showInfo(result,"green");
-            		window.location.href="menu.jsp";
+            	
+            	if(/^[\d]+$/.test(result)){
+            		showInfo("登录成功！","green");
+            		window.location.href="menu.jsp?token="+result;
             	}else{
             		showInfo(result,"red");
             	}

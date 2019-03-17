@@ -12,8 +12,29 @@
 	
 	
 </head>
-<body style="background-color: red;">
-	<div class="container"></div>
+<body>
+	<div id="menu-container">
+		<div class="row" style="height: 60px;background-color: red;">
+			<div class="col-md-1" style="height: 60px;background-color: yellow;">
+				<img src="logo.jpg" style="width: 60px;height: 60px;">
+			</div>
+			
+			
+			<div class="col-md-2 col-md-offset-9" style="height: 60px;background-color: blue;">
+				<img src="default-user.jpg" style="width: 60px;height: 60px;">
+			</div>
+		
+			
+		</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</div>
 	
 		
 		

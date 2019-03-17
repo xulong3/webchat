@@ -49,6 +49,7 @@ public class RedisSessionServiceImpl implements RedisSessionService{
 		String redisKey=RedisKey.TOKEN_KEY_PREFIX+token;
 		Jedis jedis = jedisPool.getResource();
 		Boolean b = jedis.exists(redisKey);
+		jedis.close();
 		if(b){
 			return "no";
 		}else{
@@ -63,7 +64,17 @@ public class RedisSessionServiceImpl implements RedisSessionService{
 		Jedis jedis = jedisPool.getResource();
 		List<String> values = jedis.hmget(redisKey, "status");
 		int status = Integer.parseInt(values.get(0));
+		jedis.close();
 		return status;
+	}
+
+	@Override
+	public Map<String, String> queryUser(String token) {
+		String redisKey=RedisKey.TOKEN_KEY_PREFIX+token;
+		Jedis jedis = jedisPool.getResource();
+		Map<String, String> user = jedis.hgetAll(redisKey);
+		jedis.close();
+		return user;
 	}
 
 }

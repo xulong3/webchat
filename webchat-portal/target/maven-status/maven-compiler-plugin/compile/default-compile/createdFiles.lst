@@ -1,1 +1,2 @@
 com\asiainfo\sso\controller\SsoController.class
+com\asiainfo\filter\TokenFilter.class

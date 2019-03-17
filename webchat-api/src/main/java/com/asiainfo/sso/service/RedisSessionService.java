@@ -1,5 +1,7 @@
 package com.asiainfo.sso.service;
 
+import java.util.Map;
+
 import com.asiainfo.entity.User;
 
 public interface RedisSessionService {
@@ -9,4 +11,6 @@ public interface RedisSessionService {
 	String isSessionExpire(String token);
 	//查看用户登录状态
 	int queryUserStatus(String token);
+	//根据token获取整个用户的hash
+	Map<String,String> queryUser(String token);
 }

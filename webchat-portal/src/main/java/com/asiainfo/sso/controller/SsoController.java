@@ -18,6 +18,7 @@ import com.asiainfo.exception.SendEmailException;
 import com.asiainfo.sso.service.RedisSessionService;
 import com.asiainfo.sso.service.UserService;
 import com.asiainfo.util.ExceptionUtil;
+import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.MD5Util;
 import com.asiainfo.util.PageTemplate;
@@ -149,5 +150,19 @@ public class SsoController {
 		
 		
 	}
+	
+	
+	
+	@RequestMapping("/getUserCache")
+	public String getUserCache(String token){
+		Map<String, String> userMap = this.redisSessionService.queryUser(token);
+		String jsonString = JsonUtil.mapToJsonString(userMap);
+		return jsonString;
+	}
+	
+	
+	
+	
+	
 	
 }

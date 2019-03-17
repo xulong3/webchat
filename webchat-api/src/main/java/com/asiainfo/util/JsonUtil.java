@@ -35,4 +35,10 @@ public class JsonUtil {
 		Map<String, String> map = jsonStringToMap(json);
 		return map;
 	}
+	
+	public static String mapToJsonString(Map<String,String> map){
+		String jsonString = JSON.toJSONString(map);
+		return jsonString;
+	}
+	
 }
