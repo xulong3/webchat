@@ -1,6 +1,5 @@
 package com.asiainfo.sso.service.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -60,10 +59,10 @@ public class RedisSessionServiceImpl implements RedisSessionService{
 
 	@Override
 	public int queryUserStatus(String token) {
-		String redisKey=RedisKey.TOKEN_KEY_PREFIX+token;
+		String redisKey=RedisKey.STATUS_KEY_PREFIX+token;
 		Jedis jedis = jedisPool.getResource();
-		List<String> values = jedis.hmget(redisKey, "status");
-		int status = Integer.parseInt(values.get(0));
+		String value = jedis.get(redisKey);
+		int status = Integer.parseInt(value);
 		jedis.close();
 		return status;
 	}
@@ -75,6 +74,16 @@ public class RedisSessionServiceImpl implements RedisSessionService{
 		Map<String, String> user = jedis.hgetAll(redisKey);
 		jedis.close();
 		return user;
+	}
+
+	@Override
+	public String saveUserStatus(String token,String value) {
+		String redisKey=RedisKey.STATUS_KEY_PREFIX+token;
+		Jedis jedis = jedisPool.getResource();
+		String res = jedis.set(redisKey, value);
+		LoggerUtil.info(this.getClass(), res);
+		jedis.close();
+		return "yes";
 	}
 
 }

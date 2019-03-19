@@ -19,4 +19,8 @@ public class WebResult {
 	public static final String PASSWORD_ERROR="密码不正确，请输入正确的密码！";
 	
 	public static final String LOGIN_SUCCESS="登录成功！";
+	
+	public static final String INIT_USER_ROOT_SUCCESS="初始化用户根路径成功！";
+	
+	public static final String INIT_USER_ROOT_FAIL="初始化用户根路径失败！";
 }

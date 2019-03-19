@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.asiainfo.entity.User" alias="user"/>
 		<typeAlias type="com.asiainfo.entity.BaseException" alias="baseException"/>
 		<typeAlias type="com.asiainfo.entity.Label" alias="label"/>
+		<typeAlias type="com.asiainfo.entity.SysLabel" alias="sysLabel"/>
 	</typeAliases>
 	
 	

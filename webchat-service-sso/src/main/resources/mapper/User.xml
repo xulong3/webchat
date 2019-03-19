@@ -12,7 +12,6 @@
 		<result property="regTime" column="reg_time"/>
 		<result property="actTime" column="act_time"/>
 		<result property="email" column="email"/>
-		<result property="status" column="status"/>
 	</resultMap>
 
 
@@ -21,8 +20,8 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="user">
-		insert into user(account,nickname,password,email,available,reg_time,status) 
-		values(#{account},#{nickname},#{password},#{email},#{available},#{regTime},0)
+		insert into user(account,nickname,password,email,available,reg_time) 
+		values(#{account},#{nickname},#{password},#{email},#{available},#{regTime})
 	</insert>
  	
  	<update id="updateUserAvailable" parameterType="user">

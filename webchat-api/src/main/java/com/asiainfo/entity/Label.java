@@ -13,8 +13,6 @@ public class Label implements Serializable{
 	private String account;
 	private String labelKey;
 	private String labelValue;
-	private String valueType;
-	private String format;
 	public int getId() {
 		return id;
 	}
@@ -39,18 +37,8 @@ public class Label implements Serializable{
 	public void setLabelValue(String labelValue) {
 		this.labelValue = labelValue;
 	}
-	public String getValueType() {
-		return valueType;
-	}
-	public void setValueType(String valueType) {
-		this.valueType = valueType;
-	}
-	public String getFormat() {
-		return format;
-	}
-	public void setFormat(String format) {
-		this.format = format;
-	}
+	
+	
 	
 	
 }

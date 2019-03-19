@@ -12,7 +12,6 @@ import com.asiainfo.util.service.JdbcService;
 import com.asiainfo.util.service.impl.JdbcServiceImpl;
 
 public class EmailUtil {
-	private static String ACTIVE_ACCOUNT_URL="http://localhost:8081/webchat-portal/activeAccount?account=";
 	private static JdbcService jdbcService=new JdbcServiceImpl();
 	
 	
@@ -93,8 +92,8 @@ public class EmailUtil {
 	}
 	
 	public static String getActiveAccountTemplate(String account){
-		ACTIVE_ACCOUNT_URL=ACTIVE_ACCOUNT_URL+account;
-		return "您好!欢迎您加入网页聊天室,您的聊天账号为"+account+",请在三天内点击<a href='"+ACTIVE_ACCOUNT_URL+"'>此处</a>激活该账号,否则账号将会不可用!";
+		String url="http://localhost:8081/webchat-portal/activeAccount?account="+account;
+		return "您好!欢迎您加入网页聊天室,您的聊天账号为"+account+",请在三天内点击<a href='"+url+"'>此处</a>激活该账号,否则账号将会不可用!";
 	}
 	
 	

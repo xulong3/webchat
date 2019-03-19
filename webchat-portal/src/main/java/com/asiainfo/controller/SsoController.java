@@ -1,10 +1,12 @@
-package com.asiainfo.sso.controller;
+package com.asiainfo.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.httpclient.HttpException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +20,7 @@ import com.asiainfo.exception.SendEmailException;
 import com.asiainfo.sso.service.RedisSessionService;
 import com.asiainfo.sso.service.UserService;
 import com.asiainfo.util.ExceptionUtil;
+import com.asiainfo.util.HttpUtil;
 import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.MD5Util;
@@ -50,6 +53,7 @@ public class SsoController {
 		try {
 			//提交账号申请后，将数据插入数据库，但激活状态设为未激活
 			account=userService.saveUser(user);
+			
 			
 		} catch (SaveUserException e) {
 			e.setMessage(ExceptionUtil.getExceptionMessage(e));
@@ -89,14 +93,27 @@ public class SsoController {
 		}
 		
 		try {
-			this.userService.activeAccount(account);
+			String timeStamp = this.userService.activeAccount(account);
+			//如果账号激活成功，就向redis存入用户登录状态的key,且初始设置为离线
+			String res = this.redisSessionService.saveUserStatus(account, 0+"");
+			//激活账号成功后，调用fileController,为用户创建文件夹
+			Map<String, String> params = new HashMap<String,String>();
+			params.put("token", account);
+			params.put("timeStamp", timeStamp);
+			String res2 = HttpUtil.sendPost("http://localhost:8081/webchat-portal/uploadUserRootDir", params);
+			
+			LoggerUtil.info(this.getClass(), "----------"+res2);
+			
 			return PageTemplate.getActiveAccountPage(WebResult.ACTIVE_ACCOUNT_SUCCESS);
 		} catch (ActiveAccountException e) {
 			e.setMessage(ExceptionUtil.getExceptionMessage(e));
 			baseExceptionService.saveBaseException(e);
 			return PageTemplate.getActiveAccountPage(WebResult.ACTIVE_ACCOUNT_FAIL);
 
-		}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return ""; 
 		
 	}
 	
@@ -136,8 +153,10 @@ public class SsoController {
 		}
 		
 		//登录成功，调用redis服务,将user实体的信息放入redis中
+		//将用户状态改为1
+		String res = this.redisSessionService.saveUserStatus(user.getAccount(), 1+"");
 		try {
-			user.setStatus(1);
+			
 			String s = this.redisSessionService.beginSession(user);
 			
 			LoggerUtil.info(this.getClass(), s);

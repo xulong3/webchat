@@ -13,4 +13,6 @@ public interface RedisSessionService {
 	int queryUserStatus(String token);
 	//根据token获取整个用户的hash
 	Map<String,String> queryUser(String token);
+	//放入用户状态
+	String saveUserStatus(String token,String value);
 }

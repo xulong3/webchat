@@ -1,17 +1,23 @@
 package com.asiainfo.sso.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import com.asiainfo.entity.Label;
+import com.asiainfo.entity.SysLabel;
 import com.asiainfo.entity.User;
 import com.asiainfo.exception.ActiveAccountException;
 import com.asiainfo.exception.MD5Exception;
 import com.asiainfo.exception.SaveUserException;
 import com.asiainfo.exception.SendEmailException;
+import com.asiainfo.sso.dao.LabelDao;
+import com.asiainfo.sso.dao.SysLabelDao;
 import com.asiainfo.sso.dao.UserDao;
 import com.asiainfo.sso.service.UserService;
 import com.asiainfo.util.EmailUtil;
@@ -22,6 +28,10 @@ public class UserServiceImpl implements UserService{
 
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private SysLabelDao sysLabelDao;
+	@Resource
+	private LabelDao labelDao;
 	
 	@Override
 	@Transactional
@@ -40,12 +50,19 @@ public class UserServiceImpl implements UserService{
 		user.setRegTime(new Date());
 		
 		int rows = this.userDao.insertUser(user);
+		
+		
+		
 		if(rows==1){
 			
 			return newAccount;
 		}else{
 			throw new SaveUserException(newAccount);
 		}
+		
+		
+		
+		
 	}
 
 	@Override
@@ -77,17 +94,37 @@ public class UserServiceImpl implements UserService{
 	public String activeAccount(String account) {
 		User user = new User();
 		user.setAccount(account);
-		user.setActTime(new Date());
+		Date actTime = new Date();
+		user.setActTime(actTime);
 		user.setAvailable(1);
 		int rows1 = this.userDao.updateUserActTime(user);
 		int rows2 = this.userDao.updateUserAvailable(user);
-		if(rows1==1 && rows2==1){
-			return "yes";
+		//激活用户之后，还要创造用户默认的系统标签
+		//获取系统标签
+		List<SysLabel> sysLabels = this.sysLabelDao.selectSysLabel();
+		List<Label> labels = new ArrayList<Label>();
+		for (SysLabel sysLabel : sysLabels) {
+			Label label = new Label();
+			label.setAccount(account);
+			label.setLabelKey(sysLabel.getComment());
+			label.setLabelValue(sysLabel.getDefaultValue());
+			labels.add(label);
+		}
+		
+		int rows3 = this.labelDao.batchInsertLabel(labels);
+		
+		
+		if(rows1==1 && rows2==1 && rows3==sysLabels.size()){
+			
+			
+			return String.valueOf(actTime.getTime());
 		}else{
 			throw new ActiveAccountException(account);
 		}
 		
 	}
+	
+	
 
 
 	@Override

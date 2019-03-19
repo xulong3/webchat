@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.springframework.stereotype.Service;
+
 import com.asiainfo.util.service.JdbcService;
 
+@Service("jdbcService")
 public class JdbcServiceImpl implements JdbcService{
 
 	private Connection conn;

@@ -25,8 +25,11 @@ $(function(){
 	$("#menu-container").css('width',$(window).width());
 	$("#menu-container").css('height',$(window).height());
 	
-	//
+	//获取用户名
 	$("#nickname-a").text(userObj.nickname);
-	
+	$("#nickname-a").click(function(){
+		
+		$("iframe").attr("src","personal_center.jsp");
+	});
 	
 });

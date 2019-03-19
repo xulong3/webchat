@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.sso.dao.SysLabelDao">
+	
+	<resultMap type="com.asiainfo.entity.SysLabel" id="sysLabelMap">
+		<id property="id" column="id"/>
+		<result property="labelKey" column="label_key"/>
+		<result property="comment" column="comment"/>
+		<result property="isMetaData" column="is_metadata"/>
+		<result property="defaultValue" column="default_value"/>
+	</resultMap>
+	
+	<select id="selectSysLabel" resultMap="sysLabelMap">
+		select * from sys_label
+	
+	</select>
+</mapper>

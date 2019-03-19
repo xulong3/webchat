@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.sso.dao.LabelDao">
+	
+	<!--  批量插入用户的标签,主要用于注册时插入系统标签 -->
+    <insert id="batchInsertLabel" parameterType="list">
+   		insert into label(account,label_key,label_value) values
+   		<foreach collection="list" item="item" separator=",">
+   			
+   			(#{item.account},#{item.labelKey},#{item.labelValue})
+   		</foreach>
+    </insert>
+</mapper>
