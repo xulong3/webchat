@@ -14,7 +14,7 @@ public class FileServiceImpl implements FileService{
 	public String createUserRootDir(String token, String timeStamp) {
 		String value=null;
 		try {
-			value = jdbcService.queryConfigValueByKey("nginx-root");
+			value = jdbcService.queryConfigValueByKey("nginx_root");
 		} catch (Exception e) {
 			
 			e.printStackTrace();

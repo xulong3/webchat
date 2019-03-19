@@ -22,7 +22,7 @@
 			
 			
 			<div class="col-md-2 col-md-offset-7">
-				<img src="default-user.jpg" class="img-60">
+				<img id="portrait" class="img-60">
 				<a class="h2" id="nickname-a" href="javascript:void(0)"></a>
 			</div>
 		

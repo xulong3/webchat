@@ -3,5 +3,15 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.asiainfo.label.dao.LabelDao">
 	
+	<resultMap type="com.asiainfo.entity.Label" id="labelMap">
+		<id property="id" column="id"/>
+		<result property="account" column="account"/>
+		<result property="labelKey" column="label_key"/>
+		<result property="labelValue" column="label_value"/>
+	</resultMap>
 	
+	<select id="selectLabelByToken" parameterType="string" resultMap="labelMap">
+		select * from label where account=#{account}
+	
+	</select>
 </mapper>

@@ -64,6 +64,9 @@ public class TokenFilter implements Filter {
 			out.append(PageTemplate.getAccessForbiddenPage("用户当前为离线状态，请重新登录"));
 			return;
 		}
+		
+		
+		
 		chain.doFilter(req, resp);
 		
 		
