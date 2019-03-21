@@ -1,0 +1,23 @@
+var lmcTreeData=[
+    {
+        text: '标签管理中心',
+        selectable:false,
+        tags: ['LOC'],
+        nodes: [
+            {
+                text: '身份标签'
+            },
+            {
+                text: '系统标签'
+            },
+            {
+                text: '个性标签'
+            }
+        ]
+    },
+    {
+        text: '设置中心',
+        tags: ['SETTINGS']
+        
+    }
+]

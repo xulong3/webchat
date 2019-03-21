@@ -47,7 +47,7 @@ function init(){
 	$("#nickname-a").text(userObj.nickname);
 	$("#nickname-a").click(function(){
 		
-		$("iframe").attr("src","personal_center.jsp");
+		$("iframe").attr("src","lmc_auth.jsp");
 	});
 }
 

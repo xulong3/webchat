@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+.auth-span{
+	
+	background-color: green;
+	color: white;
+	display: inline-block;
+	width: 100px;
+	height:28px;
+	font-size:18px;
+	border:2px solid white;
+	border-radius: 5px;
+	text-align: center;
+	font-family:"宋体";
+}
+
+.auth-input{
+	width: 300px;
+	display: inline-block;
+	margin-left: 40px;
+	height: 30px;
+}
+
+.auth-row{
+	
+	margin-bottom: 20px;
+}

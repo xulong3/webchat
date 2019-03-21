@@ -25,10 +25,16 @@ function clearInput(){
 }
 
 $(function(){
+	
+	
+	
+	
 	$("a").before(getSpace(14));
 	
 	
 		$("#apply-btn").click(function(){
+			btnDisabled(this,"lg");
+			
 			//先清空
 			clearInfo();
 			//获取四个文本框的值
@@ -39,6 +45,7 @@ $(function(){
 			//验证昵称，1<=length<=10
 			if(nickname.length<1 || nickname.length>10){
 				showInfo("昵称长度请保证在1到10个字符之间！","red");
+				btnEnable(this,"提交账号申请");
 				return;
 			}
 			
@@ -46,6 +53,7 @@ $(function(){
 			//验证密码，6<=length<=15
 			if(password.length<6 || password.length>15){
 				showInfo("密码长度请保证在6到15个字符之间！","red");
+				btnEnable(this,"提交账号申请");
 				return;
 			}
 			
@@ -53,6 +61,7 @@ $(function(){
 			//验证两次输入的密码是否相等
 			if(password!=password2){
 				showInfo("两次输入的密码不同！","red");
+				btnEnable(this,"提交账号申请");
 				return;
 			}
 			
@@ -60,6 +69,7 @@ $(function(){
 			var re=new RegExp("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$"); 
 		    if (!re.test(email)) {
 		    	showInfo("邮箱格式不正确！","red");
+		    	btnEnable(this,"提交账号申请");
 				return;
 		    }
 			
@@ -82,6 +92,7 @@ $(function(){
 	            	}
 	        		//清空表单
 	            	clearInput();
+	            	btnEnable($("#apply-btn").get(0),"提交账号申请");
 	            }
 	    	});
 			

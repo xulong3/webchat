@@ -1,12 +1,10 @@
 package com.asiainfo.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.httpclient.HttpException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

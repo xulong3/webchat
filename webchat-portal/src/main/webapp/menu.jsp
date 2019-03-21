@@ -28,10 +28,14 @@
 		
 			
 		</div>
-		
-		<div class="row" style="height: 88%;">
-		
-			<iframe style="width: 100%;height: 100%;" frameborder="0"></iframe>
+		 
+		<div class="row" style="height: 88%; background-color: red;">
+			<div class="col-md-10" style="height: 100%;">
+			
+				<iframe style="width: 100%;height: 100%;" frameborder="0"></iframe>
+			
+			</div>
+			<div class="col-md-2" style="height: 100%;background-color: red;"></div>
 		</div>
 	
 	

@@ -20,7 +20,7 @@ import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.PageTemplate;
 
 @WebFilter(value={"/menu.jsp"})
-public class TokenFilter implements Filter {
+public class TokenAuthFilter implements Filter {
 
 	//需要手动注入
 	private RedisSessionService redisSessionService;

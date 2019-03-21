@@ -21,4 +21,10 @@ public class LabelController {
 	}
 	
 	
+	@RequestMapping("/testLabel")
+	public String testLabel(){
+		return "ok";
+	}
+	
+	
 }

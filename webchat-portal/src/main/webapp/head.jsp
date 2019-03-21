@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="./bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link href="./bootstrap-switch/css/bootstrap-switch.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="./JQuery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
+<script type="text/javascript" src="./bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
 <script type="text/javascript">
 	var ctx="/webchat-portal";
 	var fsr="http://localhost:81/";
@@ -30,4 +35,25 @@
 	        }
 	   }
 	} 
+	
+	//btn为按钮对象，size可为字符串类型，lg,2x,3x,4x,5x
+	function btnDisabled(btn,size){
+		$(btn).attr("disabled",true);
+		$(btn).css("background-color","gray");
+		$(btn).css("border","none");
+		$(btn).html("<i class='fa fa-spinner fa-spin fa-"+size+"'></i>加载中...");
+	}
+	
+	
+	function btnEnable(btn,content){
+		$(btn).removeAttr("disabled");
+		$(btn).css("background-color","");
+		$(btn).css("border","");
+		$(btn).html(content);
+	}
+	
+	
+	
+	
+	
 </script>
