@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import com.asiainfo.entity.Label;
+import com.asiainfo.entity.SysLabel;
 import com.asiainfo.label.dao.LabelDao;
 import com.asiainfo.label.service.LabelService;
 import com.asiainfo.util.JsonUtil;
@@ -24,20 +25,34 @@ public class LabelServiceImpl implements LabelService{
 	private JedisPool jedisPool;
 	
 	
+	
+
+
 	@Override
-	public String queryLabel(String token) {
+	public String loadSysLabelToRedis(String token) {
+		SysLabel syslabel = this.labelDao.selectSysLabelByAccount(token);
+		String s = JsonUtil.objectToJsonString(syslabel);
+		Jedis jedis = jedisPool.getResource();
+		Boolean b = jedis.exists(RedisKey.SYSLABEL_KEY);
+		if(b){
+			Long l = jedis.hset(RedisKey.SYSLABEL_KEY, RedisKey.SYSLABEL_HASH_KEY_PREFIX+token, s);
+		}else{
+			Map<String, String> map = new HashMap<String,String>();
+			map.put(RedisKey.SYSLABEL_HASH_KEY_PREFIX+token, s);
+			String res = jedis.hmset(RedisKey.SYSLABEL_KEY, map);
+		}
+		jedis.close();
+		return "yes";
+	}
+
+
+	@Override
+	public String loadLabelToRedis(String token) {
 		Jedis jedis = jedisPool.getResource();
 		String redisKey=RedisKey.LABEL_KEY_PREFIX+token;
-		Boolean b = jedis.exists(redisKey);
-		if(b){
-			Map<String, String> map = jedis.hgetAll(redisKey);
-			String jsonString = JsonUtil.mapToJsonString(map);
-			jedis.close();
-			return jsonString;
-		}else{
-			List<Label> list = this.labelDao.selectLabelByToken(token);
-			
-			
+		List<Label> list = this.labelDao.selectLabelByAccount(token);
+		
+		if(list.size()!=0){
 			Map<String, String> map = new HashMap<String,String>();
 			
 			
@@ -52,12 +67,33 @@ public class LabelServiceImpl implements LabelService{
 			}
 			
 			String res = jedis.hmset(redisKey, map);
-			LoggerUtil.info(this.getClass(), "----------"+res);
-			jedis.close();
-			return JsonUtil.mapToJsonString(map);
 			
+			LoggerUtil.info(this.getClass(), "----------"+res);
 		}
 		
+		jedis.close();
+		return "yes";
+			
+		
+		
+	}
+
+
+	@Override
+	public String querySysLabelCache(String token) {
+		Jedis jedis = jedisPool.getResource();
+		List<String> list = jedis.hmget(RedisKey.SYSLABEL_KEY, RedisKey.SYSLABEL_HASH_KEY_PREFIX+token);
+		jedis.close();
+		return list.get(0);
+	}
+
+
+	@Override
+	public String queryLabelCache(String token) {
+		Jedis jedis = jedisPool.getResource();
+		Map<String, String> map = jedis.hgetAll(RedisKey.LABEL_KEY_PREFIX+token);
+		jedis.close();
+		return JsonUtil.mapToJsonString(map);
 	}
 	
 	

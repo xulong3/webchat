@@ -6,6 +6,7 @@ console.log(params.token);
 var token=params.token;
 var userObj={};
 var labelObj={};
+var sysLabelObj={};
 //根据token从redis缓存查找用户基本信息
 $.ajax({
 	type: "post",
@@ -34,7 +35,22 @@ $.ajax({
     },
     success:function (result) {
     	labelObj=$.parseJSON(result);
-    	console.log(labelObj.头像);
+    	
+    }
+});
+
+//根据token从redis缓存查找用户标签信息
+$.ajax({
+	type: "post",
+    dataType: "json",
+    url: ctx+"/getSysLabelCache",
+    async:false,
+    data: {
+    	"token":token
+    },
+    success:function (result) {
+    	sysLabelObj=$.parseJSON(result);
+    	console.log(sysLabelObj.portrait);
     }
 });
 
@@ -42,7 +58,7 @@ $.ajax({
 
 function init(){
 	//设置头像
-	$("#portrait").attr("src",fsr+labelObj.头像+"?time="+new Date().getTime());
+	$("#portrait").attr("src",fsr+sysLabelObj.portrait+"?time="+new Date().getTime());
 	//获取用户名
 	$("#nickname-a").text(userObj.nickname);
 	$("#nickname-a").click(function(){

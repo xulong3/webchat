@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.asiainfo.entity.User;
 
 public class JsonUtil {
 	
@@ -40,5 +41,6 @@ public class JsonUtil {
 		String jsonString = JSON.toJSONString(map);
 		return jsonString;
 	}
+	
 	
 }

@@ -16,15 +16,14 @@ public class LabelController {
 	@RequestMapping("/getLabelCache")
 	public String getLabelCache(String token){
 		
-		String labels = this.labelService.queryLabel(token);
+		String labels = this.labelService.queryLabelCache(token);
 		return labels;
 	}
 	
-	
-	@RequestMapping("/testLabel")
-	public String testLabel(){
-		return "ok";
+	@RequestMapping("/getSysLabelCache")
+	public String getSysLabelCache(String token){
+		
+		String sysLabels = this.labelService.querySysLabelCache(token);
+		return sysLabels;
 	}
-	
-	
 }

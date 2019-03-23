@@ -23,4 +23,6 @@ public class WebResult {
 	public static final String INIT_USER_ROOT_SUCCESS="初始化用户根路径成功！";
 	
 	public static final String INIT_USER_ROOT_FAIL="初始化用户根路径失败！";
+	
+	public static final String IS_LOGGED_IN="该账号已登录，不能重复登录！";
 }

@@ -19,7 +19,7 @@ public class FileServiceImpl implements FileService{
 			
 			e.printStackTrace();
 		}
-		String path=value+token+timeStamp;
+		String path=value+token+"_"+timeStamp;
 		
 		File file = new File(path);
 		boolean b = file.mkdir();

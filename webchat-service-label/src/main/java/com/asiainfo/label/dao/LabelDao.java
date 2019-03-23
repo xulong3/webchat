@@ -3,7 +3,10 @@ package com.asiainfo.label.dao;
 import java.util.List;
 
 import com.asiainfo.entity.Label;
+import com.asiainfo.entity.SysLabel;
 
 public interface LabelDao {
-	List<Label> selectLabelByToken(String account);
+	
+	SysLabel selectSysLabelByAccount(String account);
+	List<Label> selectLabelByAccount(String account);
 }

@@ -15,7 +15,7 @@ import com.asiainfo.exception.MD5Exception;
 import com.asiainfo.exception.ObjectToMapException;
 import com.asiainfo.exception.SaveUserException;
 import com.asiainfo.exception.SendEmailException;
-import com.asiainfo.sso.service.RedisSessionService;
+import com.asiainfo.sso.service.SessionManager;
 import com.asiainfo.sso.service.UserService;
 import com.asiainfo.util.ExceptionUtil;
 import com.asiainfo.util.HttpUtil;
@@ -32,7 +32,7 @@ public class SsoController {
 	@Resource
 	private BaseExceptionService baseExceptionService;
 	@Resource
-	private RedisSessionService redisSessionService;
+	private SessionManager sessionManager;
 	
 	
 	@RequestMapping("/applyAccount")
@@ -93,7 +93,7 @@ public class SsoController {
 		try {
 			String timeStamp = this.userService.activeAccount(account);
 			//如果账号激活成功，就向redis存入用户登录状态的key,且初始设置为离线
-			String res = this.redisSessionService.saveUserStatus(account, 0+"");
+			String res = this.sessionManager.saveUserStatus(account, 0);
 			//激活账号成功后，调用fileController,为用户创建文件夹
 			Map<String, String> params = new HashMap<String,String>();
 			params.put("token", account);
@@ -150,14 +150,25 @@ public class SsoController {
 			return WebResult.PASSWORD_ERROR;
 		}
 		
-		//登录成功，调用redis服务,将user实体的信息放入redis中
-		//将用户状态改为1
-		String res = this.redisSessionService.saveUserStatus(user.getAccount(), 1+"");
+		//调用redis服务,查看登录状态
+		int status = this.sessionManager.queryUserStatus(user.getAccount());
+		if(status==0){
+			//可以登录，将用户状态改为1
+			String res = this.sessionManager.saveUserStatus(user.getAccount(), 1);
+			//将用户信息刷新一遍
+			
+			
+			
+		}else if(status==1){
+			return WebResult.IS_LOGGED_IN;
+		}
+		
+		
 		try {
 			
-			String s = this.redisSessionService.beginSession(user);
+			String res = this.sessionManager.refreshAuthCache(user);
 			
-			LoggerUtil.info(this.getClass(), s);
+			LoggerUtil.info(this.getClass(), res);
 			return user.getAccount();
 			
 		} catch (ObjectToMapException e) {
@@ -172,7 +183,7 @@ public class SsoController {
 	
 	@RequestMapping("/getUserCache")
 	public String getUserCache(String token){
-		Map<String, String> userMap = this.redisSessionService.queryUser(token);
+		Map<String, String> userMap = this.sessionManager.queryUser(token);
 		String jsonString = JsonUtil.mapToJsonString(userMap);
 		return jsonString;
 	}

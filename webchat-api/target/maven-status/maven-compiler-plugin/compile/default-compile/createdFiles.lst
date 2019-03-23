@@ -9,9 +9,7 @@ com\asiainfo\util\HttpUtil.class
 com\asiainfo\exception\SaveUserException.class
 com\asiainfo\util\DESUtil.class
 com\asiainfo\util\WebResult.class
-com\asiainfo\sso\service\RedisSessionService.class
 com\asiainfo\util\JsonUtil$1.class
-com\asiainfo\util\RedisUtil.class
 com\asiainfo\util\MD5Util.class
 com\asiainfo\util\LoggerUtil.class
 com\asiainfo\util\EmailUtil.class
@@ -22,6 +20,7 @@ com\asiainfo\entity\Config.class
 com\asiainfo\util\RedisKey.class
 com\asiainfo\sso\service\UserService.class
 com\asiainfo\util\service\JdbcService.class
+com\asiainfo\sso\service\SessionManager.class
 com\asiainfo\util\ExceptionUtil.class
 com\asiainfo\exception\ObjectToMapException.class
 com\asiainfo\common\service\BaseExceptionService.class

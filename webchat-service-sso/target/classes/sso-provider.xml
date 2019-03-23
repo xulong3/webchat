@@ -21,9 +21,9 @@
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service timeout="60000" interface="com.asiainfo.sso.service.UserService" ref="userService" />
-	<dubbo:service interface="com.asiainfo.sso.service.RedisSessionService" ref="redisSessionService" />
+	<dubbo:service interface="com.asiainfo.sso.service.SessionManager" ref="sessionManager" />
 
 	<!-- 和本地bean一样实现服务 -->
     <bean name="userService" class="com.asiainfo.sso.service.impl.UserServiceImpl" />
-    <bean name="redisSessionService" class="com.asiainfo.sso.service.impl.RedisSessionServiceImpl" />
+    <bean name="sessionManager" class="com.asiainfo.sso.service.impl.RedisSessionManager" />
 </beans>

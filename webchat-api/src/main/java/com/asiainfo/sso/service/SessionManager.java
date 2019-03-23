@@ -4,9 +4,9 @@ import java.util.Map;
 
 import com.asiainfo.entity.User;
 
-public interface RedisSessionService {
-	//开启session
-	String beginSession(User user);
+public interface SessionManager {
+	//刷新auth 缓存
+	String refreshAuthCache(User user);
 	//根据token查看会话是否过期
 	String isSessionExpire(String token);
 	//查看用户登录状态
@@ -14,5 +14,12 @@ public interface RedisSessionService {
 	//根据token获取整个用户的hash
 	Map<String,String> queryUser(String token);
 	//放入用户状态
-	String saveUserStatus(String token,String value);
+	String saveUserStatus(String token,int value);
+	
+	String isIllegalLogin(String token);
+	
+	String hasSysLabelCache(String token);
+	
+	String hasLabelCache(String token);
+	
 }

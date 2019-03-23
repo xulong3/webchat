@@ -2,6 +2,9 @@ package com.asiainfo.label.service;
 
 public interface LabelService {
 
-	String queryLabel(String token);
 	
+	String loadSysLabelToRedis(String token);
+	String loadLabelToRedis(String token);
+	String querySysLabelCache(String token);
+	String queryLabelCache(String token);
 }

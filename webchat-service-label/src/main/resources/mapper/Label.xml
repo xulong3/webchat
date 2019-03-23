@@ -9,9 +9,34 @@
 		<result property="labelKey" column="label_key"/>
 		<result property="labelValue" column="label_value"/>
 	</resultMap>
+
+	<resultMap type="com.asiainfo.entity.SysLabel" id="sysLabelMap">
+		<id property="id" column="id"/>
+		<result property="account" column="account"/>
+		<result property="realname" column="realname"/>
+		<result property="englishName" column="english_name"/>
+		<result property="portrait" column="portrait"/>
+		<result property="sex" column="sex"/>
+		<result property="age" column="age"/>
+		<result property="school" column="school"/>
+		<result property="hometown" column="hometown"/>
+		<result property="presentAddress" column="present_address"/>
+		<result property="birthday" column="birthday"/>
+		<result property="constellation" column="constellation"/>
+		<result property="company" column="company"/>
+		<result property="hobby" column="hobby"/>
+		<result property="signature" column="signature"/>
+		<result property="profession" column="profession"/>
+		<result property="phone" column="phone"/>
+	</resultMap>
 	
-	<select id="selectLabelByToken" parameterType="string" resultMap="labelMap">
+	
+	
+	<select id="selectSysLabelByAccount" parameterType="string" resultMap="sysLabelMap">
+		select * from sys_label where account=#{account}
+	</select>
+	
+	<select id="selectLabelByAccount" parameterType="string" resultMap="labelMap">
 		select * from label where account=#{account}
-	
 	</select>
 </mapper>

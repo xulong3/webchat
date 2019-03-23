@@ -15,7 +15,8 @@ import javax.servlet.annotation.WebFilter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.asiainfo.sso.service.RedisSessionService;
+import com.asiainfo.label.service.LabelService;
+import com.asiainfo.sso.service.SessionManager;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.PageTemplate;
 
@@ -23,8 +24,8 @@ import com.asiainfo.util.PageTemplate;
 public class TokenAuthFilter implements Filter {
 
 	//需要手动注入
-	private RedisSessionService redisSessionService;
-	
+	private SessionManager sessionManager;
+	private LabelService labelService;
 	@Override
 	public void destroy() {
 		
@@ -35,6 +36,7 @@ public class TokenAuthFilter implements Filter {
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		PrintWriter out = resp.getWriter();
+		
 		String token = req.getParameter("token");
 		//判断该token是否是有效的账号
 		if(token==null){
@@ -51,23 +53,42 @@ public class TokenAuthFilter implements Filter {
 			return;
 		}
 		//从redis缓存中查看有无此token,如果过期了，直接return
-		String res = this.redisSessionService.isSessionExpire(token);
+		String res = this.sessionManager.isSessionExpire(token);
 		if("yes".equals(res)){
 			LoggerUtil.info(this.getClass(), "----------会话过期");
 			out.append(PageTemplate.getAccessForbiddenPage("会话已过期，请重新登录"));
 			return;
 		}
-		//查看用户登录状态是否为1 
-		int status = this.redisSessionService.queryUserStatus(token);
-		if(status==0){
-			LoggerUtil.info(this.getClass(), "----------当前为离线状态");
-			out.append(PageTemplate.getAccessForbiddenPage("用户当前为离线状态，请重新登录"));
+		//查看是否非法登录
+		String res1 = this.sessionManager.isIllegalLogin(token);
+		if("yes".equals(res1)){
+			LoggerUtil.info(this.getClass(), "----------非法登录");
+			out.append(PageTemplate.getAccessForbiddenPage("非法登录"));
+			return;
+		}else if("no".equals(res1)){
+			
+			LoggerUtil.info(this.getClass(), "----------通过了身份验证过滤器");
+			
+			//判断有无label和syslabel
+			
+			String s1 = this.sessionManager.hasSysLabelCache(token);
+			String s2 = this.sessionManager.hasLabelCache(token);
+			if("no".equals(s1)) {
+				String result1 = labelService.loadSysLabelToRedis(token);
+			}
+			if("no".equals(s2)){
+				
+				String result2 = labelService.loadLabelToRedis(token);
+			}
+				
+			chain.doFilter(req, resp);
 			return;
 		}
 		
 		
 		
-		chain.doFilter(req, resp);
+		
+		
 		
 		
 	}
@@ -77,7 +98,8 @@ public class TokenAuthFilter implements Filter {
 	public void init(FilterConfig config) throws ServletException {
 		
 		ApplicationContext ac =  WebApplicationContextUtils.getWebApplicationContext(config.getServletContext());  
-		redisSessionService = (RedisSessionService) ac.getBean("redisSessionService");
+		sessionManager = (SessionManager) ac.getBean("sessionManager");
+		labelService = (LabelService) ac.getBean("labelService");
 	}
 
 }
