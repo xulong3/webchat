@@ -1,12 +1,5 @@
 
-function getSpace(count){
-	var space="";
-	for (var i = 0; i < count; i++) {
-		space+="&nbsp;";
-	}
-	return space;
-	
-}
+
 
 function showInfo(msg,color){
 	

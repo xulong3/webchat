@@ -2,8 +2,7 @@
 
 .auth-span{
 	
-	background-color: green;
-	color: white;
+	
 	display: inline-block;
 	width: 100px;
 	height:28px;
@@ -25,3 +24,32 @@
 	
 	margin-bottom: 20px;
 }
+
+.auth-pwd{
+	width: 300px;
+	display: inline-block;
+	margin-left: 140px;
+	height: 30px;
+	margin-bottom: 15px;
+}
+#save-btn{
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	margin-left: 140px;
+	border-radius: 5px;
+	
+	
+}
+
+#pwd-row{
+	display: none;
+}
+
+
+
+
+
+
+
+

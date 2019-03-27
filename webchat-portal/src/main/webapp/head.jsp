@@ -5,6 +5,9 @@
 <script type="text/javascript" src="./JQuery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="./bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
 <script type="text/javascript" src="./bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="./My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript" src="./websocket/sockjs.min.js"></script>
+<script type="text/javascript" src="./websocket/stomp.min.js"></script>
 
 <script type="text/javascript">
 	var ctx="/webchat-portal";
@@ -17,6 +20,15 @@
 			
 		});
 	});
+	
+	function getSpace(count){
+		var space="";
+		for (var i = 0; i < count; i++) {
+			space+="&nbsp;";
+		}
+		return space;
+		
+	}
 	
 	function UrlSearch(params) {
 

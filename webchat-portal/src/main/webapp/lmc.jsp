@@ -15,12 +15,25 @@
 		});
 		//使tree为身份验证标签的被选中
 		$('#lmc-tree').treeview('toggleNodeSelected', [ nodeid, { silent: true } ]);
+		
+		$('#lmc-tree').on('nodeSelected',function(event, data) {
+			
+			if(data.nodeId==1){
+				location.href='lmc_auth.jsp';
+			}
+			if(data.nodeId==2){
+				location.href='lmc_sys.jsp';
+			}
+		});
 	}
 	
 	
 	$(function(){
 		
 		initTree();
+		
+		
+		
 		
 	});
 	

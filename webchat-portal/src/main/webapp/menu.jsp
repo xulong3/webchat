@@ -8,7 +8,7 @@
 <jsp:include page="head.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="./css/menu.css">
 <script type="text/javascript" src="./js/menu.js"></script>
-	
+<script type="text/javascript" src="./js/websocket.js"></script>	
 	
 	
 </head>
@@ -20,8 +20,37 @@
 				<a class="h3" href="javascript:void(0)">多人在线网页聊天室</a>
 			</div>
 			
+			<div class="col-md-6" style="padding-top: 12px;">
 			
-			<div class="col-md-2 col-md-offset-7">
+				<div class="row" style="height: 30px;">
+					<div class="col-sm-3">
+						<a style="font-size: 20px;" href="javascript:void(0)">添加好友</a>
+					
+					</div>
+					<div class="col-sm-3">
+						<a style="font-size: 20px;" href="javascript:void(0)">添加好友</a>
+					
+					</div>
+				</div>
+				<div class="row" style="background-color: blue;height: 10px;">
+					<div class="col-sm-2" style="background-color: black;">
+					
+					</div>
+					<div class="col-sm-2" style="background-color: green;">
+					
+					</div>
+				
+				</div>
+				
+				<!-- <a style="font-size: 20px;" href="javascript:void(0)">添加好友</a>
+				
+				<a style="font-size: 20px;" href="javascript:void(0)">添加好友</a> -->
+			</div>
+			
+			
+			
+			
+			<div class="col-md-2 col-md-offset-1">
 				<img id="portrait" class="img-60">
 				<a class="h2" id="nickname-a" href="javascript:void(0)"></a>
 			</div>

@@ -19,7 +19,7 @@
 		确认密码<input type="password" name="password2" id="password2" class="form-control">
 		注册邮箱<input type="text" name="email" id="email" class="form-control">
 		<br><div id="info"></div><br>
-		<input id="apply-btn" type="button" value="提交账号申请" class="btn-success">
+		<button id="apply-btn" type="button" class="btn-success">提交账号申请</button>
 		
 		<a href="login.jsp">去登录</a>
 	</div>

@@ -20,34 +20,38 @@
 		<div style="height: 100%;float: left;width: 78%;padding-left: 80px;padding-top: 40px;">
 			<div class="row auth-row">
 				<span class="auth-span">我的账号</span>
-				<input type="text" disabled="disabled" class="form-control auth-input">
+				<input id="account" type="text" disabled="disabled" class="form-control auth-input">
 			
 			</div>
 			<div class="row auth-row">
 				<span class="auth-span">我的昵称</span>
-				<input type="text" class="form-control auth-input">
-			
+				<input id="nickname" type="text" disabled="disabled" class="form-control auth-input">
+				<i class="fa fa-pencil-square-o fa-2x"></i>
 			</div>
 			<div class="row auth-row">
 				<span class="auth-span">我的邮箱</span>
-				<input type="text" class="form-control auth-input">
-			
+				<input id="email" type="text" disabled="disabled" class="form-control auth-input">
+				<i class="fa fa-pencil-square-o fa-2x"></i>
 			</div>
+			
+			
+			
 			<div class="row auth-row">
-				<span class="auth-span">修改密码</span>
-				<input type="checkbox" checked id="sw"/>
-			</div>
-			
-			<div class="row">
+				<span id="update-pwd-span" class="auth-span">修改密码</span>
+				<i id="edit-i" class="fa fa-pencil-square-o fa-2x"></i>
 				
-				<input type="password" class="form-control auth-input" placeholder="旧密码">
-				<input type="password" class="form-control auth-input" placeholder="新密码">
-				<input type="password" class="form-control auth-input" placeholder="确认密码">
+				
+				
+			</div>
+			
+			<div id="pwd-row" class="row auth-row" closed="true">
+				<input type="password" class="form-control auth-pwd" placeholder="旧密码">
+				<input type="password" class="form-control auth-pwd" placeholder="新密码">
+				<input type="password" class="form-control auth-pwd" placeholder="确认密码">
+				<i class="fa fa-floppy-o fa-2x"></i>
 			</div>
 			
 			
-			
-			<button class="btn-success">保存</button>
 		</div>
 	
 		<div style="clear: both;"></div>

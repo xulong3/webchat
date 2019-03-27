@@ -16,5 +16,7 @@
     <!-- 生成远程服务代理，可以和本地bean一样使用service -->
     <dubbo:reference id="userService" interface="com.asiainfo.sso.service.UserService" />
     <dubbo:reference id="baseExceptionService" interface="com.asiainfo.common.service.BaseExceptionService" />
-    <dubbo:reference id="redisSessionService" interface="com.asiainfo.sso.service.RedisSessionService" />
+    <dubbo:reference id="sessionManager" interface="com.asiainfo.sso.service.SessionManager" />
+    <dubbo:reference id="fileService" interface="com.asiainfo.common.service.FileService" />
+    <dubbo:reference id="labelService" interface="com.asiainfo.label.service.LabelService" />
 </beans>
