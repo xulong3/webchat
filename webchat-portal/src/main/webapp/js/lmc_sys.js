@@ -1,5 +1,5 @@
 
-var sysLabelObj=parent.sysLabelObj;
+
 
 function initData(){
 	

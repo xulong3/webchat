@@ -25,4 +25,16 @@ public class WebResult {
 	public static final String INIT_USER_ROOT_FAIL="初始化用户根路径失败！";
 	
 	public static final String IS_LOGGED_IN="该账号已登录，不能重复登录！";
+	
+	public static final String ADD_FRIEND_REFUSED="该账号拒绝任何人加他为好友！";
+	
+	public static final String ADD_FRIEND_SUCCESS="添加好友成功！";
+	
+	public static final String ADD_FRIEND_FAIL="添加好友失败！";
+	
+	public static final String NEED_VALIDATE_INFO="需要验证信息";
+	
+	public static final String FRIEND_NOT_SELF="不能添加自己为好友！";
+	
+	
 }

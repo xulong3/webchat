@@ -44,4 +44,11 @@
 	<select id="selectUserAvailable" parameterType="string" resultType="int">
 		select available from user where account=#{account}
 	</select>
+	
+	
+	
+	<select id="selectUserByAccount" parameterType="string" resultMap="userMap">
+		select * from user where account=#{account}
+	</select>
+	
 </mapper>

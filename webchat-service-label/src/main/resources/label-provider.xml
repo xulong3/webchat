@@ -21,7 +21,9 @@
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.asiainfo.label.service.LabelService" ref="labelService" />
+    <dubbo:service interface="com.asiainfo.label.service.ConfigLabelService" ref="configLabelService" />
 
 	<!-- 和本地bean一样实现服务 -->
     <bean name="labelService" class="com.asiainfo.label.service.impl.LabelServiceImpl" />
+    <bean name="configLabelService" class="com.asiainfo.label.service.impl.ConfigLabelServiceImpl" />
 </beans>

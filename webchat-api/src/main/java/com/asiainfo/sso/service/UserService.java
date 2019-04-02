@@ -27,4 +27,6 @@ public interface UserService {
 	
 	//根据账号或email查询用户
 	User queryUserByToken(Map<String,String> map);
+	
+	User queryUserByAccount(String account);
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+                        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+                        http://www.springframework.org/schema/aop 
+                        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+                        http://www.springframework.org/schema/task 
+       					http://www.springframework.org/schema/task/spring-task.xsd" >
+	
+	<!-- 开启事务注解驱动，基于注解的声明式事务 -->  
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" /> 
+    
+	<!-- 引入jdbc.properties配置文件 -->
+	<bean id="propertyConfigurer" 
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc.properties" />
+	</bean>
+
+	<!-- 配置数据源，如果用dbcp链接池，则class为org.apache.commons.dbcp.BasicDataSource -->
+	<bean id="dataSource" 
+		class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+	</bean>
+
+	<!-- spring和MyBatis整合，让spring来管理mybatis的sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:mapper/*.xml"></property>
+		<!-- mybatis-config配置文件是为了生成sqlSessionFactory的，因此将它配置为sqlSessionFactory javabean的一个属性 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+
+	<!-- MapperScannerConfigurer将自动扫描basePackage,并将Mapper接口生成代理注入到Spring-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.asiainfo.message.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+
+	<!-- 配置spring的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="com.asiainfo" />
+	
+	
+	
+	
+		
+	<import resource="message-provider.xml"/>
+	
+</beans>

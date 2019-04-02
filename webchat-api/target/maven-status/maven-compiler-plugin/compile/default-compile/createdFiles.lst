@@ -1,3 +1,4 @@
+com\asiainfo\label\service\ConfigLabelService.class
 com\asiainfo\entity\UnknownException.class
 com\asiainfo\entity\Label.class
 com\asiainfo\exception\MD5Exception.class
@@ -17,6 +18,7 @@ com\asiainfo\common\service\FileService.class
 com\asiainfo\util\DESUtil$Base64Utils.class
 com\asiainfo\label\service\LabelService.class
 com\asiainfo\entity\Config.class
+com\asiainfo\entity\Friend.class
 com\asiainfo\util\RedisKey.class
 com\asiainfo\sso\service\UserService.class
 com\asiainfo\util\service\JdbcService.class
@@ -27,7 +29,9 @@ com\asiainfo\common\service\BaseExceptionService.class
 com\asiainfo\util\ExceptionCode.class
 com\asiainfo\entity\BaseBusinessException.class
 com\asiainfo\util\JsonUtil.class
+com\asiainfo\message\service\FriendService.class
 com\asiainfo\entity\User.class
+com\asiainfo\entity\ConfigLabel.class
 com\asiainfo\util\service\impl\JdbcServiceImpl.class
 com\asiainfo\util\PageTemplate.class
 com\asiainfo\exception\ActiveAccountException.class

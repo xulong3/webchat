@@ -20,31 +20,16 @@
 				<a class="h3" href="javascript:void(0)">多人在线网页聊天室</a>
 			</div>
 			
-			<div class="col-md-6" style="padding-top: 12px;">
+			<div class="col-md-6" style="padding-top: 20px;">
 			
 				<div class="row" style="height: 30px;">
-					<div class="col-sm-3">
-						<a style="font-size: 20px;" href="javascript:void(0)">添加好友</a>
-					
-					</div>
-					<div class="col-sm-3">
-						<a style="font-size: 20px;" href="javascript:void(0)">添加好友</a>
-					
-					</div>
-				</div>
-				<div class="row" style="background-color: blue;height: 10px;">
-					<div class="col-sm-2" style="background-color: black;">
-					
-					</div>
-					<div class="col-sm-2" style="background-color: green;">
-					
-					</div>
-				
+					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">会话列表</a>
+					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">好友列表</a>
+					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">朋友圈</a>
+					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">添加好友</a>
+					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">更多应用</a>
 				</div>
 				
-				<!-- <a style="font-size: 20px;" href="javascript:void(0)">添加好友</a>
-				
-				<a style="font-size: 20px;" href="javascript:void(0)">添加好友</a> -->
 			</div>
 			
 			
@@ -58,8 +43,8 @@
 			
 		</div>
 		 
-		<div class="row" style="height: 88%; background-color: red;">
-			<div class="col-md-10" style="height: 100%;">
+		<div class="row" style="height: 88%;margin: 0;">
+			<div class="col-md-10" style="height: 100%;padding: 0;">
 			
 				<iframe style="width: 100%;height: 100%;" frameborder="0"></iframe>
 			

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.message.dao.FriendDao">
+
+	<resultMap type="com.asiainfo.entity.Friend" id="friendMap">
+		<id property="id" column="id"/>
+		<result property="userAccount" column="user_account"/>
+		<result property="friendAccount" column="friend_account"/>
+		<result property="remark" column="remark"/>
+		<result property="validateInfo" column="validate_info"/>
+		<result property="addStatus" column="add_status"/>
+	</resultMap>
+
+
+	
+	<insert id="insertFriend" parameterType="friend">
+		insert into friend(user_account,friend_account,remark,validate_info,add_status) 
+		values(#{userAccount},#{friendAccount},#{remark},#{validateInfo},#{addStatus})
+	</insert>
+ 	
+
+</mapper>

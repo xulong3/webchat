@@ -135,4 +135,9 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
+	@Override
+	public User queryUserByAccount(String account) {
+		return this.userDao.selectUserByAccount(account);
+	}
+
 }

@@ -41,4 +41,6 @@ public interface UserDao {
 	int updateUserAvailable(User user);
 	
 	int updateUserActTime(User user);
+	
+	User selectUserByAccount(String account);
 }

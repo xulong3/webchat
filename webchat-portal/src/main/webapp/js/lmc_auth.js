@@ -1,6 +1,7 @@
-var userObj=parent.userObj;
+
 
 $(function(){
+	
 	//设置容器的高度
 	$("#auth-container").css("height",frame);
 	//初始化bootstrap-switch

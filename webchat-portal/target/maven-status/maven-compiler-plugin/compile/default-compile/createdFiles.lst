@@ -4,4 +4,5 @@ com\asiainfo\controller\LabelController.class
 com\asiainfo\controller\MessageController.class
 com\asiainfo\config\WebSocketConfig.class
 com\asiainfo\handler\ExceptionHandler.class
+com\asiainfo\controller\SocketController.class
 com\asiainfo\controller\FileController.class

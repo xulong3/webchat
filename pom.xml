@@ -325,6 +325,7 @@
   	<module>webchat-service-common</module>
   	
   	<module>webchat-service-label</module>
-  	
+
+  	<module>webchat-service-message</module>
   </modules>
 </project>

@@ -72,6 +72,16 @@ $(function(){
 	$("#menu-container").css('width',$(window).width());
 	$("#menu-container").css('height',$(window).height());
 	init();
-	
+	$(".menu-item").each(function(){
+		$(this).after(getSpace(5));
+		$(this).click(function(){
+			if($(this).text()=='好友列表'){
+				
+				$("iframe").attr("src","friend_list.jsp");
+			}
+			
+			
+		});
+	});
 	
 });
