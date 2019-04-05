@@ -13,7 +13,8 @@ public class Friend implements Serializable{
 	private int id;
 	private String userAccount;
 	private String friendAccount;
-	private String remark;
+	private String userRemark;
+	private String friendRemark;
 	private String validateInfo;
 	private int addStatus;
 	
@@ -35,12 +36,7 @@ public class Friend implements Serializable{
 	public void setFriendAccount(String friendAccount) {
 		this.friendAccount = friendAccount;
 	}
-	public String getRemark() {
-		return remark;
-	}
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
+	
 	public String getValidateInfo() {
 		return validateInfo;
 	}
@@ -52,6 +48,18 @@ public class Friend implements Serializable{
 	}
 	public void setAddStatus(int addStatus) {
 		this.addStatus = addStatus;
+	}
+	public String getUserRemark() {
+		return userRemark;
+	}
+	public void setUserRemark(String userRemark) {
+		this.userRemark = userRemark;
+	}
+	public String getFriendRemark() {
+		return friendRemark;
+	}
+	public void setFriendRemark(String friendRemark) {
+		this.friendRemark = friendRemark;
 	}
 	
 	

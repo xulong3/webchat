@@ -10,7 +10,7 @@
 <script type="text/javascript" src="./websocket/stomp.min.js"></script>
 
 <script type="text/javascript">
-	var ctx="/webchat-portal";
+	var ctx="";
 	var fsr="http://localhost:81/";
 	$(function(){
 		$("img").attr('alt','加载失败');

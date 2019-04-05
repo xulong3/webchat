@@ -92,7 +92,7 @@ public class EmailUtil {
 	}
 	
 	public static String getActiveAccountTemplate(String account){
-		String url="http://localhost:8081/webchat-portal/activeAccount?account="+account;
+		String url="http://localhost:8081/activeAccount?account="+account;
 		return "您好!欢迎您加入网页聊天室,您的聊天账号为"+account+",请在三天内点击<a href='"+url+"'>此处</a>激活该账号,否则账号将会不可用!";
 	}
 	

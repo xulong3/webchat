@@ -1,8 +1,10 @@
 package com.asiainfo.sso.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.asiainfo.entity.User;
+import com.asiainfo.vo.FriendItemVo;
 
 public interface UserDao {
 	/**
@@ -43,4 +45,8 @@ public interface UserDao {
 	int updateUserActTime(User user);
 	
 	User selectUserByAccount(String account);
+	
+	List<User> selectUserBySomeAccount(List<FriendItemVo> list);
+	
+	
 }

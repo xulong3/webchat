@@ -39,4 +39,13 @@
 	<select id="selectLabelByAccount" parameterType="string" resultMap="labelMap">
 		select * from label where account=#{account}
 	</select>
+	
+	<select id="selectSysLabelPortrait" parameterType="list" resultMap="sysLabelMap">
+		select portrait,account from sys_label where account in
+		<foreach collection="list" open="(" close=")" index="index" item="item" separator=",">
+   			 #{item.account}
+   		 </foreach>
+	</select>
+	
+	
 </mapper>

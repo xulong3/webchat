@@ -1,8 +1,10 @@
 package com.asiainfo.sso.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.asiainfo.entity.User;
+import com.asiainfo.vo.FriendItemVo;
 
 public interface UserService {
 	//增加用户，成功，返回账号，失败，抛出异常
@@ -29,4 +31,6 @@ public interface UserService {
 	User queryUserByToken(Map<String,String> map);
 	
 	User queryUserByAccount(String account);
+	
+	List<User> queryUserBySomeAccount(List<FriendItemVo> list);
 }

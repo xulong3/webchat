@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.asiainfo.entity.Label;
 import com.asiainfo.entity.SysLabel;
+import com.asiainfo.vo.FriendItemVo;
 
 public interface LabelDao {
 	
 	SysLabel selectSysLabelByAccount(String account);
 	List<Label> selectLabelByAccount(String account);
+	
+	List<SysLabel> selectSysLabelPortrait(List<FriendItemVo> list);
 }

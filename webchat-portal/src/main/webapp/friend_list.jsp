@@ -22,15 +22,6 @@
 			<div style="height: 1px;border: 1px solid black;"></div>
 			<img src="search.png" id="search-icon">
 			<ul id="friend-list-ul">
-			
-				<li class="friend-li">
-					<img class="friend-img" src="default-user.jpg">
-					<div class="friend-info">
-					
-						<span class="h4">yy</span>
-					</div>
-					
-				</li>
 			</ul>
 		
 		</div>

@@ -7,7 +7,8 @@
 		<id property="id" column="id"/>
 		<result property="userAccount" column="user_account"/>
 		<result property="friendAccount" column="friend_account"/>
-		<result property="remark" column="remark"/>
+		<result property="userRemark" column="user_remark"/>
+		<result property="friendRemark" column="friend_remark"/>
 		<result property="validateInfo" column="validate_info"/>
 		<result property="addStatus" column="add_status"/>
 	</resultMap>
@@ -15,9 +16,34 @@
 
 	
 	<insert id="insertFriend" parameterType="friend">
-		insert into friend(user_account,friend_account,remark,validate_info,add_status) 
-		values(#{userAccount},#{friendAccount},#{remark},#{validateInfo},#{addStatus})
+		insert into friend(user_account,friend_account,user_remark,validate_info,add_status) 
+		values(#{userAccount},#{friendAccount},#{userRemark},#{validateInfo},#{addStatus})
 	</insert>
  	
-
+	<select id="selectFriendByTwoAccount" parameterType="friend" resultMap="friendMap">
+		select * from friend where (user_account=#{userAccount} AND friend_account=#{friendAccount}) 
+		OR (user_account=#{friendAccount} AND friend_account=#{userAccount})
+	</select>
+	
+	<select id="selectFriendByUserAccount" parameterType="friend" resultMap="friendMap">
+		select * from friend where user_account=#{userAccount} and add_status=#{addStatus}
+	</select>
+	
+	<select id="selectFriendByFriendAccount" parameterType="friend" resultMap="friendMap">
+		select * from friend where friend_account=#{friendAccount} and add_status=#{addStatus}
+	</select>
+	
+	<update id="updateFriendAddStatusById" parameterType="friend">
+		update friend set add_status=#{addStatus} where id=#{id}
+	
+	</update>
+	
+	<select id="selectFriendByAddStatusAndTwoAccount" parameterType="friend" resultMap="friendMap">
+		select * from friend where (user_account=#{userAccount} OR friend_account=#{userAccount}) 
+		and add_status=#{addStatus}
+	
+	</select>
+	
+	
+	
 </mapper>

@@ -24,6 +24,33 @@ $(function(){
 	});
 	
 	
+	//加载好友信息
+	$.ajax({
+		type:'post',
+		url:ctx+'/loadFriends',
+		data:{
+			userAccount:userObj.account,
+			addStatus:1
+		},
+		dataType:'json',
+		success:function(result){
+			result=JSON.parse(result);
+			for ( var index in result) {
+				var showName=result[index].showName==''?result[index].nickname:(result[index].showName+"("+result[index].nickname+")");
+				
+				$("#friend-list-ul").append("<li class='friend-li'>" 
+						+"<img class='friend-img' src='http://localhost:81"+result[index].portrait+"'>"
+						+"<div class='friend-info'><span class='h4'>"
+						+showName
+						+"</span></div></li>");
+				
+				
+			}
+			
+		}
+		
+	});
+	
 	
 	
 	

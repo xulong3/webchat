@@ -36,5 +36,21 @@ public class WebResult {
 	
 	public static final String FRIEND_NOT_SELF="不能添加自己为好友！";
 	
+	public static final String SEND_ADD_FRIEND_APPLY_SUCCESS="发送好友申请成功！";
+	
+	public static final String SEND_ADD_FRIEND_APPLY_FAIL="发送好友申请失败！";
+	
+	public static final String HAS_YOUR_FRIEND="该好友已经是您的好友了！！";
+	
+	public static final String HAS_SEND_ADD_FRIEND_APPLY="您已经向该好友发出添加申请了！";
+	
+	public static final String AGREEN_FRIEND_APPLY_SUCCESS="对方已成为您的好友！";
+	
+	public static final String AGREEN_FRIEND_APPLY_FAIL="同意失败！";
+	
+	
+	
+	
+	
 	
 }

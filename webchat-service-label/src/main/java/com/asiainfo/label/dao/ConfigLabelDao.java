@@ -4,6 +4,6 @@ import com.asiainfo.entity.ConfigLabel;
 
 public interface ConfigLabelDao {
 	
-	ConfigLabel selectValidateWayByAccount(String account);
+	ConfigLabel selectConfigLabelByAccount(String account);
 	
 }

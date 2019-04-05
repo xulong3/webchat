@@ -1,0 +1,11 @@
+WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
+defaultDestination=
+defaultVariables=
+eclipse.preferences.version=1
+includeTeamPrivateFiles=false
+map|0=target/classes/com|\:webchat-parent/webchat-service-sso/target/classes/com|,|/|,
+map|1=target/classes/com|\:webchat-parent/webchat-service-message/target/classes/com|,|/|,
+map|2=target/classes/com|\:webchat-parent/webchat-service-label/target/classes/com|,|/|,
+map|3=target/classes/com|\:webchat-parent/webchat-service-common/target/classes/com|,|/|,
+map|4=target/classes/com|\:webchat-parent/webchat-portal/target/webchat-portal/WEB-INF/classes/com|,|,|,
+useCurrentDateForDestinationFiles=false

@@ -13,6 +13,7 @@ import com.asiainfo.label.service.LabelService;
 import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.RedisKey;
+import com.asiainfo.vo.FriendItemVo;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -94,6 +95,13 @@ public class LabelServiceImpl implements LabelService{
 		Map<String, String> map = jedis.hgetAll(RedisKey.LABEL_KEY_PREFIX+token);
 		jedis.close();
 		return JsonUtil.mapToJsonString(map);
+	}
+
+
+	@Override
+	public List<SysLabel> querySysLabelPortrait(List<FriendItemVo> list) {
+		
+		return this.labelDao.selectSysLabelPortrait(list);
 	}
 	
 	

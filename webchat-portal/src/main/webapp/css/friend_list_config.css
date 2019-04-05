@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+
+#friend-apply-addition{
+	
+	display:none;
+	background-color: #D3D3D3;
+	margin-left: 35px;
+	padding-left: 30px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-top: 10px;
+}
+
+
+#apply_byme_div{
+	
+	
+	background-color: #D3D3D3;
+	margin-left:35px;
+	display:none;
+	padding-bottom: 20px;
+	margin-top: 10px;
+}
+
+#applied_div{
+	
+	
+	background-color: #D3D3D3;
+	margin-left:35px;
+	display:none;
+	padding-bottom: 20px;
+	margin-top: 10px;
+}
+
+.right-space-span{
+	display: inline-block;
+	margin-right: 15px;
+}

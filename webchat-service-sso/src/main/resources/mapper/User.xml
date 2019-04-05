@@ -51,4 +51,13 @@
 		select * from user where account=#{account}
 	</select>
 	
+	<select id="selectUserBySomeAccount" parameterType="list" resultMap="userMap">
+   		 select * from user where account in
+   		
+   		 <foreach collection="list" open="(" close=")" index="index" item="item" separator=",">
+   			 #{item.account}
+   		 </foreach>
+   
+    </select>
+	
 </mapper>

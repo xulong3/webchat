@@ -12,7 +12,7 @@ public class ConfigLabelServiceImpl implements ConfigLabelService{
 	private ConfigLabelDao configLabelDao;
 	@Override
 	public String queryValidateWayByAccount(String account) {
-		ConfigLabel cl = this.configLabelDao.selectValidateWayByAccount(account);
+		ConfigLabel cl = this.configLabelDao.selectConfigLabelByAccount(account);
 		if(cl==null){
 			return "-1";
 		}

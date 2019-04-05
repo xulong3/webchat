@@ -20,4 +20,5 @@
     <dubbo:reference id="fileService" interface="com.asiainfo.common.service.FileService" />
     <dubbo:reference id="labelService" interface="com.asiainfo.label.service.LabelService" />
     <dubbo:reference id="friendService" interface="com.asiainfo.message.service.FriendService" />
+    <dubbo:reference id="configLabelService" interface="com.asiainfo.label.service.ConfigLabelService" />
 </beans>
