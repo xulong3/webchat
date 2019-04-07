@@ -3,6 +3,7 @@ package com.asiainfo.sso.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -178,6 +179,72 @@ public class RedisSessionManager implements SessionManager{
 			return "no";
 		}
 		
+		
+	}
+
+	@Override
+	public void bindStompSidWithAccount(String sid, String account) {
+		Jedis jedis = jedisPool.getResource();
+		
+		
+		if(!jedis.exists(RedisKey.ALL_USER_STOMP_SID)){
+			
+			Map<String, String> map = new HashMap<String,String>();
+			Map<String, String> param = new HashMap<String,String>();
+			param.put("oid_sid", sid);
+			param.put("new_sid", sid);
+			map.put(account, JsonUtil.mapToJsonString(param));
+			
+			jedis.hmset(RedisKey.ALL_USER_STOMP_SID, map);
+			
+		}else{
+			if(jedis.hexists(RedisKey.ALL_USER_STOMP_SID, account)){
+				
+				List<String> values = jedis.hmget(RedisKey.ALL_USER_STOMP_SID, account);
+				Map<String, String> param = JsonUtil.jsonStringToMap(values.get(0));
+				param.put("oid_sid", param.get("new_sid"));
+				param.put("new_sid", sid);
+				
+				jedis.hset(RedisKey.ALL_USER_STOMP_SID, account, JsonUtil.mapToJsonString(param));
+			}else{
+				
+				Map<String, String> param = new HashMap<String,String>();
+				param.put("old_sid", sid);
+				param.put("new_sid", sid);
+				
+				jedis.hset(RedisKey.ALL_USER_STOMP_SID, account, JsonUtil.mapToJsonString(param));
+			}
+		}
+		jedis.close();
+	}
+
+	@Override
+	public String getAccountBySid(String newSid) {
+		String account=null;
+		
+		Jedis jedis = jedisPool.getResource();
+		Map<String, String> map = jedis.hgetAll(RedisKey.ALL_USER_STOMP_SID);
+		Set<String> set = map.keySet();
+		for (String key : set) {
+			Map<String, String> param = JsonUtil.jsonStringToMap(map.get(key));
+			if(newSid.equals(param.get("new_sid"))){
+				account=key;
+				break;
+			}
+		}
+		jedis.close();
+		return account;
+	}
+
+	@Override
+	public void modifyUserStatus(String account, int status) {
+		Jedis jedis = jedisPool.getResource();
+		jedis.hset(RedisKey.STATUS_KEY, RedisKey.STATUS_HASH_KEY_PREFIX+account, status+"");
+		
+		
+		
+		
+		jedis.close();
 		
 	}
 

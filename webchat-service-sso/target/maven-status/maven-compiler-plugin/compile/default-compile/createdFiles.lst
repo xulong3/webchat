@@ -1,5 +1,6 @@
+com\asiainfo\sso\dao\SysLabelDao.class
+com\asiainfo\SsoServiceStarter.class
+com\asiainfo\sso\dao\ConfigLabelDao.class
 com\asiainfo\sso\service\impl\UserServiceImpl.class
 com\asiainfo\sso\dao\UserDao.class
-com\asiainfo\sso\dao\SysLabelDao.class
 com\asiainfo\sso\service\impl\RedisSessionManager.class
-com\asiainfo\SsoServiceStarter.class

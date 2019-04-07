@@ -33,6 +33,8 @@
 	function UrlSearch(params) {
 
 		var str=location.href;
+		str=decodeURI(str);
+		
 	   var num=str.indexOf("?");
 	   str=str.substr(num+1);
 
@@ -64,7 +66,26 @@
 		$(btn).html(content);
 	}
 	
-	
+	function getFormatTime(timestamp){
+		
+		var date=new Date(parseInt(timestamp));
+		var h=date.getHours();
+		var m=date.getMinutes();
+		var s=date.getSeconds();
+		if(h<10){
+			h="0"+h;
+		}
+		if(m<10){
+			m="0"+m;
+		}
+		if(s<10){
+			s="0"+s;
+		}
+		
+		return h+":"+m+":"+s;
+		
+		
+	}
 	
 	
 	

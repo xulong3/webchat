@@ -79,9 +79,16 @@ $(function(){
 				
 				$("iframe").attr("src","friend_list.jsp");
 			}
+			if($(this).text()=='会话列表'){
+				
+				$("iframe").attr("src","chat_list.jsp");
+			}
 			
 			
 		});
 	});
+	
+	
+	
 	
 });

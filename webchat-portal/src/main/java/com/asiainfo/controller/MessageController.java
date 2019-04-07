@@ -59,6 +59,7 @@ public class MessageController {
 			
 			for (User u : users) {
 				if(u.getAccount().equals(item.getAccount())){
+					item.setAuthLabel(u);
 					item.setNickname(u.getNickname());
 					if(item.getRemark()==null || "".equals(item.getRemark())){
 						
@@ -72,6 +73,7 @@ public class MessageController {
 			
 			
 			for (SysLabel s : sysLabels) {
+				item.setSysLabel(s);
 				if(s.getAccount().equals(item.getAccount())){
 					
 					item.setPortrait(s.getPortrait());

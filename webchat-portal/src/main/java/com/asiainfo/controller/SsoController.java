@@ -188,6 +188,12 @@ public class SsoController {
 		return jsonString;
 	}
 	
+	@RequestMapping("/getUserStatus")
+	public String getUserStatus(String token){
+		
+		int status = this.sessionManager.queryUserStatus(token);
+		return status+"";
+	}
 	
 	
 }

@@ -1,4 +1,4 @@
-package com.asiainfo.handler;
+package com.asiainfo.listener;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,7 @@ import com.asiainfo.entity.UnknownException;
 import com.asiainfo.util.ExceptionUtil;
 
 @Component
-public class ExceptionHandler extends HandlerExceptionResolverComposite{
+public class ExceptionListener extends HandlerExceptionResolverComposite{
 	
 	@Resource
 	private BaseExceptionService baseExceptionService; 

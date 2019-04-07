@@ -26,8 +26,8 @@
 					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">会话列表</a>
 					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">好友列表</a>
 					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">朋友圈</a>
-					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">添加好友</a>
 					<a style="font-size: 20px;" href="javascript:void(0)" class="menu-item">更多应用</a>
+					
 				</div>
 				
 			</div>

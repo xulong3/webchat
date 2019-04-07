@@ -36,3 +36,31 @@
 	display: inline-block;
 	margin-right: 15px;
 }
+
+
+
+
+#search-icon{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top:22px;
+	left:38px;
+	
+}
+#search-input{
+	 
+	 padding-left: 22px;
+	
+	
+}
+
+
+
+
+
+
+
+
+
+

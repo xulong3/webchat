@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asiainfo.common.service.FileService;
+import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.WebResult;
+import com.asiainfo.vo.MessageVo;
 
 @RestController
 public class FileController {
@@ -28,7 +30,18 @@ public class FileController {
 		}
 	}
 	
+	@RequestMapping("/createP2pChatFile")
+	public void createP2pChatFile(String userAccount,String friendAccount){
+		
+		
+		this.fileService.createP2pChatFile(userAccount, friendAccount);
+	}
 	
-	
-	
+	@RequestMapping("/saveMessage")
+	public String saveMessage(String userAccount,String friendAccount,String message){
+		
+		
+		MessageVo msg = this.fileService.saveMessageToFile(userAccount, friendAccount, message);
+		return JsonUtil.objectToJsonString(msg);
+	}
 }

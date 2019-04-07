@@ -1,5 +1,6 @@
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-service-sso\src\main\java\com\asiainfo\sso\dao\UserDao.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-service-sso\src\main\java\com\asiainfo\SsoServiceStarter.java
+E:\gdesign\eclipseworkspace\webchat-parent\webchat-service-sso\src\main\java\com\asiainfo\sso\dao\ConfigLabelDao.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-service-sso\src\main\java\com\asiainfo\sso\dao\SysLabelDao.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-service-sso\src\main\java\com\asiainfo\sso\service\impl\UserServiceImpl.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-service-sso\src\main\java\com\asiainfo\sso\service\impl\RedisSessionManager.java

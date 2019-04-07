@@ -1,5 +1,6 @@
 package com.asiainfo.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,11 @@ public class SocketController {
 		 */
 		System.out.println(messagingTemplate);
 		//参数分别为，接收消息的用户，浏览器订阅的地址，消息本身
-		messagingTemplate.convertAndSendToUser(receiver,"/aabb", sender + "-send:"+ msg);
+		
+		
+		
+		
+		messagingTemplate.convertAndSendToUser(receiver,"/p2pchat", params);
 		
 	}
 }

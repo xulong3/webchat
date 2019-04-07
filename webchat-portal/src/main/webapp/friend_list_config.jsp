@@ -15,6 +15,12 @@
 <body>
 	<div id="friend-list-config-container" style="padding-top: 20px;">
 		
+		<div class="row" style="padding-left: 50px;margin-bottom: 20px;">
+			<input type="text" id="search-input" placeholder="搜索好友">
+			<img src="search.png" id="search-icon">
+			<button class="btn-success">搜索</button>
+		</div>	
+		
 		<div class="row" style="padding-left: 50px;">
 			<input type="text" name="friend-account" placeholder="输入好友的账号">
 			<button id="add-friend" class="btn-success">添加好友</button>

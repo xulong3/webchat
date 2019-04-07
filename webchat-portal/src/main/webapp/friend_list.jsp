@@ -16,11 +16,11 @@
 	<div id="friend-list-container">
 		<div id="friends" class="col-sm-3">
 			
-			<input type="text" id="search-input" placeholder="搜索好友">
-			<i id="config-i" class="fa fa-chevron-circle-right fa-2x"></i>
+			
+			<i id="config-i" class="fa fa-chevron-circle-right fa-2x" style="color: green;display: inline-block;margin-left: 90%;"></i>
 			
 			<div style="height: 1px;border: 1px solid black;"></div>
-			<img src="search.png" id="search-icon">
+			
 			<ul id="friend-list-ul">
 			</ul>
 		

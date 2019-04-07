@@ -22,4 +22,9 @@ public interface SessionManager {
 	
 	String hasLabelCache(String token);
 	
+	void bindStompSidWithAccount(String sid,String account);
+	
+	String getAccountBySid(String newSid);
+	
+	void modifyUserStatus(String account,int status);
 }

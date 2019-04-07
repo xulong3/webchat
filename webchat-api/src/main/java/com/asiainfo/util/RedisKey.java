@@ -9,4 +9,7 @@ public final class RedisKey {
 	
 	public static final String SYSLABEL_KEY="all_syslabel";
 	public static final String SYSLABEL_HASH_KEY_PREFIX="syslabel_";
+	
+	public static final String ALL_USER_STOMP_SID="all_user_sid";
+	
 }
