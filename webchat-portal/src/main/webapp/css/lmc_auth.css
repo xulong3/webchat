@@ -46,7 +46,10 @@
 	display: none;
 }
 
-
+.down-i{
+	 position: relative;
+	 top:6px;
+}
 
 
 

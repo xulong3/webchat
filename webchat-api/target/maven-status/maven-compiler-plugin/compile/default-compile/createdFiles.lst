@@ -1,5 +1,7 @@
 com\asiainfo\label\service\ConfigLabelService.class
 com\asiainfo\entity\UnknownException.class
+com\asiainfo\vo\MessageVo.class
+com\asiainfo\vo\FriendItemVo.class
 com\asiainfo\entity\Label.class
 com\asiainfo\exception\MD5Exception.class
 com\asiainfo\entity\SysLabel.class
@@ -29,6 +31,7 @@ com\asiainfo\common\service\BaseExceptionService.class
 com\asiainfo\util\ExceptionCode.class
 com\asiainfo\entity\BaseBusinessException.class
 com\asiainfo\util\JsonUtil.class
+com\asiainfo\util\MessageUtil.class
 com\asiainfo\message\service\FriendService.class
 com\asiainfo\entity\User.class
 com\asiainfo\entity\ConfigLabel.class

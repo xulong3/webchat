@@ -3,8 +3,7 @@ package com.asiainfo.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
+import javax.annotation.Resource;import org.apache.log4j.helpers.MDCKeySetExtractor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,12 +16,14 @@ import com.asiainfo.exception.SaveUserException;
 import com.asiainfo.exception.SendEmailException;
 import com.asiainfo.sso.service.SessionManager;
 import com.asiainfo.sso.service.UserService;
+import com.asiainfo.util.EmailUtil;
 import com.asiainfo.util.ExceptionUtil;
 import com.asiainfo.util.HttpUtil;
 import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.MD5Util;
 import com.asiainfo.util.PageTemplate;
+import com.asiainfo.util.RedisKey;
 import com.asiainfo.util.WebResult;
 
 @RestController
@@ -194,6 +195,103 @@ public class SsoController {
 		int status = this.sessionManager.queryUserStatus(token);
 		return status+"";
 	}
+	
+	@RequestMapping("/modifyUserNickname")
+	public String modifyUserNickname(String account,String nickname){
+		User user = new User();
+		user.setAccount(account);
+		user.setNickname(nickname);
+		try {
+			this.userService.modifyUserNickname(user);
+		} catch (Exception e) {
+			return WebResult.NICKNAME_MODIFY_FAIL;
+		}
+		
+		return WebResult.NICKNAME_MODIFY_SUCCESS;
+	}
+	
+	@RequestMapping("/clearAuthCache")
+	public void clearAuthCache(String account){
+		String key=RedisKey.TOKEN_KEY_PREFIX+account;
+		this.sessionManager.clearCacheByKey(key);
+	}
+	
+	@RequestMapping("/sendEmailToOldEmail")
+	public String sendEmailToOldEmail(String account,String oldEmail,String newEmail){
+		
+		String title="解除绑定此邮箱";
+		String receiver=oldEmail;
+		
+		String content=EmailUtil.getRemoveOldEmailTemplate(account, newEmail);
+		try {
+			EmailUtil.sendSimpleMail(title, receiver, content);
+		} catch (Exception e) {
+			
+		}
+		return WebResult.SEND_EMAIL_SUCCESS;
+		
+	}
+	
+	@RequestMapping("/sendEmailToNewEmail")
+	public String sendEmailToNewEmail(String account,String newEmail){
+		
+		String title="绑定此邮箱";
+		String receiver=newEmail;
+		
+		String content=EmailUtil.getBindNewEmailTemplate(account, newEmail);
+		
+		try {
+			EmailUtil.sendSimpleMail(title, receiver, content);
+		} catch (Exception e) {
+			
+		}
+		return PageTemplate.getWindowClosePage(WebResult.SEND_EMAIL_SUCCESS);
+		
+	}
+	
+	@RequestMapping("/modifyUserEmail")
+	public String modifyUserEmail(String account,String newEmail){
+		
+		User user = new User();
+		user.setAccount(account);
+		user.setEmail(newEmail);
+		
+		try {
+			this.userService.modifyUserEmail(user);
+		} catch (Exception e) {
+		}
+		
+		return PageTemplate.getWindowClosePage(WebResult.MODIFY_EMAIL_SUCCESS);
+		
+	}
+	
+	@RequestMapping("/modifyUserPwd")
+	public String modifyUserPwd(String account,String oldPwd,String newPwd){
+		
+		User user = this.userService.queryUserByAccount(account);
+		String encrypt=null;
+		try {
+			encrypt = MD5Util.encrypt(oldPwd);
+		} catch (Exception e) {
+		}
+		
+		if(!encrypt.equals(user.getPassword())){
+			return WebResult.OLD_PWD_ERROR;
+		}
+		
+		try {
+			user.setPassword(MD5Util.encrypt(newPwd));
+		} catch (Exception e) {
+		}
+		
+		try {
+			this.userService.modifyUserPwd(user);
+		} catch (Exception e) {
+			return WebResult.PWD_MODIFY_FAIL;
+		}
+		return WebResult.PWD_MODIFY_SUCCESS;
+	}
+	
 	
 	
 }

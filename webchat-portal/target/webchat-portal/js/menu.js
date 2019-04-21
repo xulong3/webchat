@@ -8,21 +8,25 @@ var userObj={};
 var labelObj={};
 var sysLabelObj={};
 //根据token从redis缓存查找用户基本信息
-$.ajax({
-	type: "post",
-    dataType: "json",
-    url: ctx+"/getUserCache",
-    async:false,
-    data: {
-    	"token":token
-    },
-    success:function (result) {
-    	userObj=$.parseJSON(result);
-    	console.log(userObj.nickname);
-    }
-    
-});
+function loadAuchCache(){
+	
+	$.ajax({
+		type: "post",
+		dataType: "json",
+		url: ctx+"/getUserCache",
+		async:false,
+		data: {
+			"token":token
+		},
+		success:function (result) {
+			userObj=$.parseJSON(result);
+			console.log(userObj.nickname);
+		}
+		
+	});
+}
 
+loadAuchCache();
 
 //根据token从redis缓存查找用户标签信息
 $.ajax({

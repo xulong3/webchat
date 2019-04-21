@@ -96,6 +96,18 @@ public class EmailUtil {
 		return "您好!欢迎您加入网页聊天室,您的聊天账号为"+account+",请在三天内点击<a href='"+url+"'>此处</a>激活该账号,否则账号将会不可用!";
 	}
 	
+	public static String getRemoveOldEmailTemplate(String account,String newEmail){
+		String url="http://localhost:8081/sendEmailToNewEmail?account="+account+"&newEmail="+newEmail;
+		return "您好!我们是网页聊天室,您当前正在试图将账号"+account+"解除绑定此邮箱，请确认您的操作!确认无误后，请您点击<a href='"+url+"'>此处</a>，"
+				+ "向新的邮箱发送一封邮件，并根据提示进行相关操作！";
+	}
+	
+	public static String getBindNewEmailTemplate(String account,String newEmail){
+		String url="http://localhost:8081/modifyUserEmail?account="+account+"&newEmail="+newEmail;
+		return "您好!我们是网页聊天室,您当前正在试图将账号"+account+"绑定此邮箱，请确认您的操作!确认无误后，请您点击<a href='"+url+"'>此处</a>，"
+		+ "绑定此邮箱！";
+	}
+	
 	
 	
 }

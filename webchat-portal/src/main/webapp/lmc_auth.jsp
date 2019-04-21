@@ -20,35 +20,37 @@
 		<div style="height: 100%;float: left;width: 78%;padding-left: 80px;padding-top: 40px;">
 			<div class="row auth-row">
 				<span class="auth-span">我的账号</span>
-				<input id="account" type="text" disabled="disabled" class="form-control auth-input">
+				<input id="account" type="text" disabled="disabled" class="auth-input">
 			
 			</div>
 			<div class="row auth-row">
 				<span class="auth-span">我的昵称</span>
-				<input id="nickname" type="text" disabled="disabled" class="form-control auth-input">
-				<i class="fa fa-pencil-square-o fa-2x"></i>
+				<input id="nickname" type="text" disabled="disabled" class="auth-input">
+				<i id="nickname-i" class="fa fa-pencil-square-o fa-2x down-i"></i>
+				<i id="nickname-save" class="fa fa-floppy-o fa-2x down-i"></i>
 			</div>
 			<div class="row auth-row">
 				<span class="auth-span">我的邮箱</span>
-				<input id="email" type="text" disabled="disabled" class="form-control auth-input">
-				<i class="fa fa-pencil-square-o fa-2x"></i>
+				<input id="email" type="text" disabled="disabled" class="auth-input">
+				<i id="email-i" class="fa fa-pencil-square-o fa-2x down-i"></i>
+				<i id="email-save" class="fa fa-floppy-o fa-2x down-i"></i>
 			</div>
 			
 			
 			
 			<div class="row auth-row">
 				<span id="update-pwd-span" class="auth-span">修改密码</span>
-				<i id="edit-i" class="fa fa-pencil-square-o fa-2x"></i>
+				<i id="edit-i" class="fa fa-pencil-square-o fa-2x down-i"></i>
 				
 				
 				
 			</div>
 			
 			<div id="pwd-row" class="row auth-row" closed="true">
-				<input type="password" class="form-control auth-pwd" placeholder="旧密码">
-				<input type="password" class="form-control auth-pwd" placeholder="新密码">
-				<input type="password" class="form-control auth-pwd" placeholder="确认密码">
-				<i class="fa fa-floppy-o fa-2x"></i>
+				<input id="old-pwd" type="password" class="auth-pwd" placeholder="旧密码">
+				<input id="new-pwd" type="password" class="auth-pwd" placeholder="新密码">
+				<input id="new-pwd-2" type="password" class="auth-pwd" placeholder="确认密码">
+				<i id="pwd-save" class="fa fa-floppy-o fa-2x down-i"></i>
 			</div>
 			
 			

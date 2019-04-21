@@ -33,4 +33,13 @@ public interface UserService {
 	User queryUserByAccount(String account);
 	
 	List<User> queryUserBySomeAccount(List<FriendItemVo> list);
+	
+	String modifyUserNickname(User user);
+	
+	String modifyUserEmail(User user);
+	
+	String modifyUserPwd(User user);
+	
+	
+	
 }

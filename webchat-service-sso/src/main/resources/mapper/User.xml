@@ -59,5 +59,17 @@
    		 </foreach>
    
     </select>
+    
+    <update id="updateUserNickname" parameterType="user">
+    	update user set nickname=#{nickname} where account=#{account}
+    </update>
+    
+    <update id="updateUserEmail" parameterType="user">
+    	update user set email=#{email} where account=#{account}
+    </update>
+    
+    <update id="updateUserPwd" parameterType="user">
+    	update user set password=#{password} where account=#{account}
+    </update>
 	
 </mapper>

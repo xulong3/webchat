@@ -68,8 +68,8 @@ $(function(){
 		}
 		
 		//验证密码，6<=length<=15
-		if(password.length<6 || password.length>15){
-			showInfo("您输入的密码不合法，密码长度请保证在6到15个字符之间！","red");
+		if(password.length<3 || password.length>15){
+			showInfo("您输入的密码不合法，密码长度请保证在3到15个字符之间！","red");
 			return;
 		}
 		

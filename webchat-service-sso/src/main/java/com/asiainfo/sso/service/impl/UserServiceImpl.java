@@ -156,4 +156,40 @@ public class UserServiceImpl implements UserService{
 		return this.userDao.selectUserBySomeAccount(list);
 	}
 
+	@Override
+	public String modifyUserNickname(User user) {
+		int rows = this.userDao.updateUserNickname(user);
+		
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+	}
+	
+	@Override
+	public String modifyUserEmail(User user) {
+		int rows = this.userDao.updateUserEmail(user);
+		
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+	}
+	
+	@Override
+	public String modifyUserPwd(User user) {
+		int rows = this.userDao.updateUserPwd(user);
+		
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+	}
+
 }

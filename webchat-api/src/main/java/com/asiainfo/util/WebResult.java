@@ -3,6 +3,7 @@ package com.asiainfo.util;
 public class WebResult {
 	public static final String APPLY_ACCOUNT_FAIL="很遗憾,账号申请失败,请稍后重试!";
 	public static final String SEND_EMAIL_FAIL="很遗憾,邮件发送失败,申请未能成功,请稍后重试!";
+	public static final String SEND_EMAIL_SUCCESS="邮件发送成功,请查收!";
 	public static final String APPLY_ACCOUNT_SUCCESS="恭喜您,申请成功,邮件已发送至您的邮箱,请查收!";
 	
 	public static final String ACTIVE_ACCOUNT_FAIL="很遗憾,账号激活失败,请稍后重试!";
@@ -48,9 +49,16 @@ public class WebResult {
 	
 	public static final String AGREEN_FRIEND_APPLY_FAIL="同意失败！";
 	
+	public static final String NICKNAME_MODIFY_SUCCESS="修改成功！";
 	
+	public static final String NICKNAME_MODIFY_FAIL="修改失败！";
 	
+	public static final String MODIFY_EMAIL_SUCCESS="邮箱修改成功,请您务必重新登录，以使修改生效！";
 	
+	public static final String OLD_PWD_ERROR="旧密码输入错误！";
 	
+	public static final String PWD_MODIFY_SUCCESS="密码修改成功！请您重新登录!";
+	
+	public static final String PWD_MODIFY_FAIL="密码修改失败！";
 	
 }

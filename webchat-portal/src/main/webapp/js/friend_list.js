@@ -54,7 +54,7 @@ $(function(){
 						+"<img class='friend-img' src='http://localhost:81"+result[index].portrait+"'>"
 						+"<div class='friend-info'><a href='javascript:void(0)' onclick='loadFriendInfo("+result[index].account+")'>"
 						+showName
-						+"</a></div></li>");
+						+"</a><br>在线</div></li>");
 				
 				
 			}

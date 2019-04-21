@@ -27,4 +27,6 @@ public interface SessionManager {
 	String getAccountBySid(String newSid);
 	
 	void modifyUserStatus(String account,int status);
+	
+	void clearCacheByKey(String key);
 }

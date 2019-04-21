@@ -15,4 +15,11 @@ public class PageTemplate {
 		return "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>禁止访问</title></head>"
 				+ "<body><script type='text/javascript'>alert('"+message+"');</script></body></html>";
 	}
+	
+	public static String getWindowClosePage(String message){
+		
+		
+		return "<!DOCTYPE html><html><head><meta charset='UTF-8'><title></title></head>"
+				+ "<body><script type='text/javascript'>alert('"+message+"');window.close();</script></body></html>";
+	}
 }

@@ -48,5 +48,10 @@ public interface UserDao {
 	
 	List<User> selectUserBySomeAccount(List<FriendItemVo> list);
 	
+	int updateUserNickname(User user);
+	
+	int updateUserEmail(User user);
+	
+	int updateUserPwd(User user);
 	
 }

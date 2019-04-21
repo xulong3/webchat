@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 
 import com.asiainfo.entity.User;
 import com.asiainfo.exception.ObjectToMapException;
+import com.asiainfo.sso.dao.UserDao;
 import com.asiainfo.sso.service.SessionManager;
 import com.asiainfo.util.ExceptionUtil;
 import com.asiainfo.util.JsonUtil;
@@ -22,6 +23,11 @@ public class RedisSessionManager implements SessionManager{
 
 	@Resource
 	private JedisPool jedisPool;
+	@Resource
+	private UserDao userDao;
+	
+	
+	
 	
 	@Override
 	public String refreshAuthCache(User user) {
@@ -101,6 +107,11 @@ public class RedisSessionManager implements SessionManager{
 	public Map<String, String> queryUser(String token) {
 		String redisKey=RedisKey.TOKEN_KEY_PREFIX+token;
 		Jedis jedis = jedisPool.getResource();
+		if(!jedis.exists(redisKey)){
+			User user = this.userDao.selectUserByAccount(token);
+			String res = this.refreshAuthCache(user);
+		}
+		
 		Map<String, String> user = jedis.hgetAll(redisKey);
 		jedis.close();
 		return user;
@@ -242,6 +253,16 @@ public class RedisSessionManager implements SessionManager{
 		jedis.hset(RedisKey.STATUS_KEY, RedisKey.STATUS_HASH_KEY_PREFIX+account, status+"");
 		
 		
+		
+		
+		jedis.close();
+		
+	}
+
+	@Override
+	public void clearCacheByKey(String key) {
+		Jedis jedis = jedisPool.getResource();
+		Long res = jedis.del(key);
 		
 		
 		jedis.close();
