@@ -12,4 +12,8 @@ public interface LabelDao {
 	List<Label> selectLabelByAccount(String account);
 	
 	List<SysLabel> selectSysLabelPortrait(List<FriendItemVo> list);
+	
+	int updateSysLabelPortrait(SysLabel sysLabel);
+	
+	int updateSysLabel(SysLabel sysLabel);
 }

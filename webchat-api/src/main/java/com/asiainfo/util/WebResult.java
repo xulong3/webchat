@@ -61,4 +61,6 @@ public class WebResult {
 	
 	public static final String PWD_MODIFY_FAIL="密码修改失败！";
 	
+	public static final String SYS_LABEL_SAVE_SUCCESS="保存成功！";
+	
 }

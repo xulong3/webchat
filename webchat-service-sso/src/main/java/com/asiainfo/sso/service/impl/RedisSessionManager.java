@@ -269,4 +269,14 @@ public class RedisSessionManager implements SessionManager{
 		
 	}
 
+	@Override
+	public void clearHashCacheByField(String key, String... fields) {
+		Jedis jedis = jedisPool.getResource();
+		Long res = jedis.hdel(key, fields);
+		
+		
+		jedis.close();
+		
+	}
+
 }

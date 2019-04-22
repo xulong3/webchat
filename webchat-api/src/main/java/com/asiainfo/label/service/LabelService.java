@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.asiainfo.entity.SysLabel;
 import com.asiainfo.vo.FriendItemVo;
+import com.asiainfo.vo.SysLabelVo;
 
 public interface LabelService {
 
@@ -13,4 +14,7 @@ public interface LabelService {
 	String querySysLabelCache(String token);
 	String queryLabelCache(String token);
 	List<SysLabel> querySysLabelPortrait(List<FriendItemVo> list);
+	
+	String modifySysLabelPortrait(SysLabel sysLabel);
+	String modifySysLabel(SysLabelVo sysLabelVo);
 }

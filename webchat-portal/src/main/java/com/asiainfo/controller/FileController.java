@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.asiainfo.common.service.FileService;
+import com.asiainfo.entity.SysLabel;
 import com.asiainfo.entity.User;
+import com.asiainfo.label.service.LabelService;
 import com.asiainfo.sso.service.UserService;
 import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
@@ -25,6 +27,8 @@ public class FileController {
 	private FileService fileService;
 	@Resource
 	private UserService userService;
+	@Resource
+	private LabelService labelService;
 
 	@RequestMapping("/uploadUserRootDir")
 	public String uploadUserRootDir(String token,String timeStamp){
@@ -56,10 +60,18 @@ public class FileController {
 	
 	
 	@RequestMapping("/uploadPortrait")
-	public void uploadPortrait(String account,MultipartFile portrait){
+	public String uploadPortrait(String account,MultipartFile portrait){
 		
 		User user = this.userService.queryUserByAccount(account);
+		String path="/"+user.getAccount()+"_"+user.getActTime().getTime()+"/";
 		
+		String fileName=portrait.getOriginalFilename();
+		
+		String suffix=fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		
+		fileName=user.getAccount()+"_portrait"+suffix;
+		
+		path=path+fileName;
 		
 		try {
 			InputStream in = portrait.getInputStream();
@@ -76,13 +88,18 @@ public class FileController {
 				totalLen+=len;
 			}
 			
-			this.fileService.uploadUserPortrait(user,portrait.getOriginalFilename(),total,totalLen);
+			this.fileService.uploadUserPortrait(path,total,totalLen);
+			
+			SysLabel sysLabel = new SysLabel();
+			sysLabel.setPortrait(path);
+			sysLabel.setAccount(user.getAccount());
+			this.labelService.modifySysLabelPortrait(sysLabel);
 			
 		} catch (IOException e) {
 			
 		}
 		
-		
+		return "";
 	}
 	
 }

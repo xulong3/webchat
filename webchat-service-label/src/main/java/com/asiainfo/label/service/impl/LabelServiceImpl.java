@@ -1,10 +1,14 @@
 package com.asiainfo.label.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.asiainfo.entity.Label;
 import com.asiainfo.entity.SysLabel;
@@ -14,10 +18,11 @@ import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.LoggerUtil;
 import com.asiainfo.util.RedisKey;
 import com.asiainfo.vo.FriendItemVo;
+import com.asiainfo.vo.SysLabelVo;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-
+@Transactional
 public class LabelServiceImpl implements LabelService{
 
 	@Resource
@@ -83,6 +88,20 @@ public class LabelServiceImpl implements LabelService{
 	@Override
 	public String querySysLabelCache(String token) {
 		Jedis jedis = jedisPool.getResource();
+		if(!jedis.exists(RedisKey.SYSLABEL_KEY)){
+			
+		}
+		if(!jedis.hexists(RedisKey.SYSLABEL_KEY, RedisKey.SYSLABEL_HASH_KEY_PREFIX+token)){
+			//从数据库中加载
+			SysLabel sysLabel = labelDao.selectSysLabelByAccount(token);
+			//将sysLabel放入缓存
+			jedis.hset(RedisKey.SYSLABEL_KEY, RedisKey.SYSLABEL_HASH_KEY_PREFIX+token, 
+					JsonUtil.objectToJsonString(sysLabel));
+			
+			return JsonUtil.objectToJsonString(sysLabel);
+			
+		}
+		
 		List<String> list = jedis.hmget(RedisKey.SYSLABEL_KEY, RedisKey.SYSLABEL_HASH_KEY_PREFIX+token);
 		jedis.close();
 		return list.get(0);
@@ -102,6 +121,62 @@ public class LabelServiceImpl implements LabelService{
 	public List<SysLabel> querySysLabelPortrait(List<FriendItemVo> list) {
 		
 		return this.labelDao.selectSysLabelPortrait(list);
+	}
+
+
+	@Override
+	public String modifySysLabelPortrait(SysLabel sysLabel) {
+		int rows = this.labelDao.updateSysLabelPortrait(sysLabel);
+		
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+		
+	}
+	
+	@Override
+	public String modifySysLabel(SysLabelVo sysLabelVo) {
+		SysLabel sysLabel = new SysLabel();
+		sysLabel.setRealname(sysLabelVo.getRealname());
+		sysLabel.setEnglishName(sysLabelVo.getEnglishName());
+		sysLabel.setSex(sysLabelVo.getSex());
+		
+		try {
+			if(!"".equals(sysLabelVo.getBirthday())){
+				
+				sysLabel.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse(sysLabelVo.getBirthday()));
+			}
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		sysLabel.setAge(Integer.parseInt(sysLabelVo.getAge().equals("")?"0":sysLabelVo.getAge()));
+		
+		sysLabel.setConstellation(sysLabelVo.getConstellation());
+		
+		sysLabel.setCompany(sysLabelVo.getCompany());
+		sysLabel.setProfession(sysLabelVo.getProfession());
+		sysLabel.setSchool(sysLabelVo.getSchool());
+		sysLabel.setPhone(sysLabelVo.getPhone());
+		sysLabel.setPresentAddress(sysLabelVo.getPresentAddress());
+		sysLabel.setHometown(sysLabelVo.getHometown());
+		sysLabel.setHobby(sysLabelVo.getHobby());
+		sysLabel.setSignature(sysLabelVo.getSignature());
+		sysLabel.setAccount(sysLabelVo.getAccount());
+		
+		
+		int rows = this.labelDao.updateSysLabel(sysLabel);
+		
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+		
 	}
 	
 	

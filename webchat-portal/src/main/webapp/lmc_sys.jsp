@@ -52,16 +52,20 @@
 				
 					<tr>
 						<td>生日</td>
-						<td colspan="3"><input name="birthday" type="text" style="width: 80%;" id="birthday" onclick="WdatePicker({isShowClear:false,readOnly:true})"></td>
+						<td colspan="3">
+		<input name="birthday" type="text" style="width: 80%;" id="birthday" 
+		onclick="WdatePicker({isShowClear:false,readOnly:true,skin:'whyGreen',isShowToday:false,qsEnabled:false,onpicked:dateChange})">
+		
+						</td>
 						<td>头像</td>
 						<td colspan="3"><input name="portrait" id="portrait" type="file" accept="image/*" /></td>
 					</tr>
 				
 					<tr>
 						<td>年龄</td>
-						<td colspan="3"><input type="text" style="width: 80%;" disabled="disabled"></td>
+						<td colspan="3"><input name="age" type="text" style="width: 80%;" readonly="readonly"></td>
 						<td>星座</td>
-						<td colspan="3"><input type="text" style="width: 80%;" disabled="disabled"></td>
+						<td colspan="3"><input name="constellation" type="text" style="width: 80%;" readonly="readonly"></td>
 						
 					</tr>
 					

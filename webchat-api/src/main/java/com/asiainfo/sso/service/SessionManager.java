@@ -29,4 +29,6 @@ public interface SessionManager {
 	void modifyUserStatus(String account,int status);
 	
 	void clearCacheByKey(String key);
+	
+	void clearHashCacheByField(String key,String... fields);
 }

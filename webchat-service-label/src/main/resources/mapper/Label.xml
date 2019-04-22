@@ -47,5 +47,28 @@
    		 </foreach>
 	</select>
 	
+	<update id="updateSysLabelPortrait" parameterType="sysLabel">
+		update sys_label set portrait=#{portrait} where account=#{account}
+	</update>
+	
+	<update id="updateSysLabel" parameterType="sysLabel">
+		update sys_label set  
+	 		realname=#{realname},
+			english_name=#{englishName},
+			sex=#{sex},
+			age=#{age},
+			school=#{school},
+			hometown=#{hometown},
+			present_address=#{presentAddress},
+			birthday=#{birthday},
+			constellation=#{constellation},
+			company=#{company},
+			hobby=#{hobby},
+			signature=#{signature},
+			profession=#{profession},
+			phone=#{phone}
+	 	where account=#{account}
+	 
+	</update>
 	
 </mapper>

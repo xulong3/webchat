@@ -28,6 +28,28 @@ function loadAuchCache(){
 
 loadAuchCache();
 
+
+function refreshSysLabelCache(account,isClear){
+	
+	//根据token从redis缓存查找用户标签信息
+	$.ajax({
+		type: "post",
+	    dataType: "json",
+	    url: ctx+"/getSysLabelCache",
+	    async:false,
+	    data: {
+	    	"token":account,
+	    	//是否先清除缓存
+	    	"isClear":isClear
+	    },
+	    success:function (result) {
+	    	sysLabelObj=$.parseJSON(result);
+	    	
+	    }
+	});
+}
+
+
 //根据token从redis缓存查找用户标签信息
 $.ajax({
 	type: "post",
@@ -43,26 +65,16 @@ $.ajax({
     }
 });
 
-//根据token从redis缓存查找用户标签信息
-$.ajax({
-	type: "post",
-    dataType: "json",
-    url: ctx+"/getSysLabelCache",
-    async:false,
-    data: {
-    	"token":token
-    },
-    success:function (result) {
-    	sysLabelObj=$.parseJSON(result);
-    	console.log(sysLabelObj.portrait);
-    }
-});
+refreshSysLabelCache(token,"0");
 
-
-
-function init(){
+function refreshPortrait(){
 	//设置头像
 	$("#portrait").attr("src",fsr+sysLabelObj.portrait+"?time="+new Date().getTime());
+}
+
+function init(){
+	refreshPortrait();
+	
 	//获取用户名
 	$("#nickname-a").text(userObj.nickname);
 	$("#nickname-a").click(function(){
