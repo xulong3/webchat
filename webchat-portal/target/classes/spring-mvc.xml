@@ -35,6 +35,10 @@
 		<property name="suffix" value=".jsp" />
     </bean>
     
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		p:defaultEncoding="UTF-8"
+		p:maxUploadSize="104857600">
+    </bean>
     
 	
 </beans>

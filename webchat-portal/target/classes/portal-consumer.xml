@@ -13,11 +13,12 @@
     <!-- 使用zookeeper注册中心暴露发现服务地址 -->
     <dubbo:registry protocol="zookeeper" address="localhost:2181" />
 
+	
     <!-- 生成远程服务代理，可以和本地bean一样使用service -->
     <dubbo:reference id="userService" interface="com.asiainfo.sso.service.UserService" />
     <dubbo:reference id="baseExceptionService" interface="com.asiainfo.common.service.BaseExceptionService" />
     <dubbo:reference id="sessionManager" interface="com.asiainfo.sso.service.SessionManager" />
-    <dubbo:reference id="fileService" interface="com.asiainfo.common.service.FileService" />
+    <dubbo:reference id="fileService" interface="com.asiainfo.common.service.FileService"/>
     <dubbo:reference id="labelService" interface="com.asiainfo.label.service.LabelService" />
     <dubbo:reference id="friendService" interface="com.asiainfo.message.service.FriendService" />
     <dubbo:reference id="configLabelService" interface="com.asiainfo.label.service.ConfigLabelService" />

@@ -24,6 +24,10 @@
 	  	<param-value>classpath:spring-mvc.xml</param-value>
 	</init-param>
 	<load-on-startup>1</load-on-startup>
+	<multipart-config>
+   		<!-- 100M -->
+   		<max-file-size>104857600</max-file-size>
+   	</multipart-config>
 	   	
   </servlet>
 

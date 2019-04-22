@@ -1,8 +1,10 @@
-com\asiainfo\controller\SsoController.class
 com\asiainfo\filter\TokenAuthFilter.class
+com\asiainfo\config\WebSocketConfig.class
+com\asiainfo\listener\StompClientDisconnectListener.class
+com\asiainfo\listener\ExceptionListener.class
+com\asiainfo\controller\SsoController.class
 com\asiainfo\controller\LabelController.class
 com\asiainfo\controller\MessageController.class
-com\asiainfo\config\WebSocketConfig.class
-com\asiainfo\handler\ExceptionHandler.class
-com\asiainfo\controller\SocketController.class
+com\asiainfo\listener\StompClientConnectListener.class
 com\asiainfo\controller\FileController.class
+com\asiainfo\controller\SocketController.class

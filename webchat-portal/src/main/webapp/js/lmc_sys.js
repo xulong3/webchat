@@ -21,6 +21,31 @@ $(function(){
 		
 	});
 	
+	
+	$("#portrait").change(function(){
+		alert('ok');
+		$.ajaxFileUpload({
+            fileElementId: "portrait",    //需要上传的文件域的ID，即<input type="file">的ID。
+            url: ctx+'/uploadPortrait', //后台方法的路径
+            type: 'post',
+            dataType: 'json',
+            secureuri: false,//是否启用安全提交，默认为false。
+            async : true,
+            data:{
+            	account:userObj.account
+            },
+            success: function(data) {
+                
+            },
+            error: function(data, status, e) {
+               
+            }
+        });
+	});
+	
+	
+	
+	
 });
 
 

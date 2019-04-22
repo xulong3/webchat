@@ -54,7 +54,7 @@
 						<td>生日</td>
 						<td colspan="3"><input name="birthday" type="text" style="width: 80%;" id="birthday" onclick="WdatePicker({isShowClear:false,readOnly:true})"></td>
 						<td>头像</td>
-						<td colspan="3"><input type="file"></td>
+						<td colspan="3"><input name="portrait" id="portrait" type="file" accept="image/*" /></td>
 					</tr>
 				
 					<tr>

@@ -1,10 +1,14 @@
 package com.asiainfo.common.service.impl;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 
 import com.asiainfo.common.service.FileService;
+import com.asiainfo.entity.User;
 import com.asiainfo.util.MessageUtil;
 import com.asiainfo.util.service.JdbcService;
 import com.asiainfo.util.service.impl.JdbcServiceImpl;
@@ -112,5 +116,42 @@ public class FileServiceImpl implements FileService{
 		
 		return null;
 	}
+
+	@Override
+	public void uploadUserPortrait(User user,String fileName,byte[] b,int len) {
+		String value=null;
+		try {
+			value = jdbcService.queryConfigValueByKey("nginx_root");
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		String path=value+user.getAccount()+"_"+user.getActTime().getTime()+"/";
+		
+		String suffix=fileName.substring(fileName.lastIndexOf("."), fileName.length());
+		fileName=user.getAccount()+"_portrait"+suffix;
+		
+		OutputStream out=null;
+		try {
+			out = new FileOutputStream(path+fileName);
+		} catch (FileNotFoundException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		try {
+			
+			out.write(b, 0, len);
+			out.flush();
+			out.close();
+			
+		} catch (Exception e) {
+			
+		}
+		
+	}
+	
+	
 	
 }

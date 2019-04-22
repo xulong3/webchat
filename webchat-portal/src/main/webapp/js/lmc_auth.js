@@ -1,4 +1,4 @@
-
+ 
 
 $(function(){
 	
@@ -93,6 +93,7 @@ $(function(){
 			success:function(result){
 				alert(result);
 				if(result=='修改成功！'){
+					parent.$("#nickname-a").text(nickname);
 					//清楚auth缓存
 					$.ajax({
 						type:'post',
