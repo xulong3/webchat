@@ -26,51 +26,57 @@ function loadAuchCache(){
 	});
 }
 
-loadAuchCache();
-
-
 function refreshSysLabelCache(account,isClear){
 	
 	//根据token从redis缓存查找用户标签信息
 	$.ajax({
 		type: "post",
-	    dataType: "json",
-	    url: ctx+"/getSysLabelCache",
-	    async:false,
-	    data: {
-	    	"token":account,
-	    	//是否先清除缓存
-	    	"isClear":isClear
-	    },
-	    success:function (result) {
-	    	sysLabelObj=$.parseJSON(result);
-	    	
-	    }
+		dataType: "json",
+		url: ctx+"/getSysLabelCache",
+		async:false,
+		data: {
+			"token":account,
+			//是否先清除缓存
+			"isClear":isClear
+		},
+		success:function (result) {
+			sysLabelObj=$.parseJSON(result);
+			
+		}
 	});
 }
 
+function refreshLabelCache(account,isClear){
+	
+	//根据token从redis缓存查找用户标签信息
+	$.ajax({
+		type: "post",
+		dataType: "json",
+		url: ctx+"/getLabelCache",
+		async:false,
+		data: {
+			"token":account,
+			"isClear":isClear
+		},
+		success:function (result) {
+			labelObj=$.parseJSON(result);
+			
+		}
+	});
+}
 
-//根据token从redis缓存查找用户标签信息
-$.ajax({
-	type: "post",
-    dataType: "json",
-    url: ctx+"/getLabelCache",
-    async:false,
-    data: {
-    	"token":token
-    },
-    success:function (result) {
-    	labelObj=$.parseJSON(result);
-    	
-    }
-});
-
-refreshSysLabelCache(token,"0");
 
 function refreshPortrait(){
 	//设置头像
 	$("#portrait").attr("src",fsr+sysLabelObj.portrait+"?time="+new Date().getTime());
 }
+
+
+
+loadAuchCache();
+refreshLabelCache(token,"0");
+refreshSysLabelCache(token,"0");
+
 
 function init(){
 	refreshPortrait();

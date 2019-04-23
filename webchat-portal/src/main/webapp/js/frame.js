@@ -1,5 +1,6 @@
 var sysLabelObj=parent.sysLabelObj;
 var userObj=parent.userObj;
+var labelObj=parent.labelObj;
 var stompClient=parent.stompClient;
 function sendMsg(receiver,msg){
 	parent.sendMsg(receiver,msg);

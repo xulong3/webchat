@@ -12,6 +12,9 @@ public class ConfigLabel implements Serializable{
 	private int id;
 	private String account;
 	private int validateWay;
+	private int friendCircle;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -29,6 +32,12 @@ public class ConfigLabel implements Serializable{
 	}
 	public void setValidateWay(int validateWay) {
 		this.validateWay = validateWay;
+	}
+	public int getFriendCircle() {
+		return friendCircle;
+	}
+	public void setFriendCircle(int friendCircle) {
+		this.friendCircle = friendCircle;
 	}
 	
 	

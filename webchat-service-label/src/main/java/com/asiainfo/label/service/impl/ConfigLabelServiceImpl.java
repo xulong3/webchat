@@ -18,6 +18,11 @@ public class ConfigLabelServiceImpl implements ConfigLabelService{
 		}
 		return cl.getValidateWay()+"";
 	}
+	@Override
+	public ConfigLabel queryConfigLabel(String account) {
+		
+		return this.configLabelDao.selectConfigLabelByAccount(account);
+	}
 
 	
 	

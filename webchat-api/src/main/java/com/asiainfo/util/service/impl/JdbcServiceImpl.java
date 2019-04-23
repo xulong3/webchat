@@ -33,6 +33,28 @@ public class JdbcServiceImpl implements JdbcService{
 		
 		return value;
 	}
+
+	@Override
+	public String modifyConfigLabel(String account, String configKey, String configValue,String javaType) throws Exception {
+		init();
+		String sql="update config_label set "+configKey+" =? where account=?";
+		PreparedStatement stmt=conn.prepareStatement(sql);
+		
+		if("int".equals(javaType)){
+			stmt.setInt(1, Integer.parseInt(configValue));
+		}
+		
+		if("string".equals(javaType)){
+			stmt.setString(1, configValue);
+		}
+		
+		stmt.setString(2, account);
+		int rows = stmt.executeUpdate();
+		conn.close();
+		
+		return "yes";
+		
+	}
 	
 
 }

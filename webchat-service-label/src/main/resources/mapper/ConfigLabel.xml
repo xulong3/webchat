@@ -7,6 +7,7 @@
 		<id property="id" column="id"/>
 		<result property="account" column="account"/>
 		<result property="validateWay" column="validate_way"/>
+		<result property="friendCircle" column="friend_circle"/>
 	</resultMap>
 
 	<select id="selectConfigLabelByAccount" parameterType="string" resultMap="configLabelMap">

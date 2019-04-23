@@ -71,4 +71,18 @@
 	 
 	</update>
 	
+	<insert id="insertLabel" parameterType="label">
+		insert into label(account,label_key,label_value) values(#{account},#{labelKey},#{labelValue})
+	</insert>
+	
+	<delete id="deleteLabelByAccountAndKey" parameterType="label" >
+		delete from label where account=#{account} and label_key=#{labelKey}
+	</delete>
+	
+	<update id="updateLabelValue" parameterType="label">
+	
+		update label set label_value=#{labelValue} where account=#{account} and label_key=#{labelKey}
+	</update>
+	
+	
 </mapper>

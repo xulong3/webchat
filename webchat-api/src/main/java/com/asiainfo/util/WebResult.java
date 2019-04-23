@@ -63,4 +63,16 @@ public class WebResult {
 	
 	public static final String SYS_LABEL_SAVE_SUCCESS="保存成功！";
 	
+	public static final String LABEL_SAVE_SUCCESS="保存成功！";
+	
+	public static final String LABEL_REMOVE_SUCCESS="删除成功！";
+	
+	public static final String LABEL_MODIFY_SUCCESS="修改成功！";
+	
+	public static final String CONFIG_LABEL_MODIFY_FAIL="修改失败！";
+	
+	public static final String BLANK="";
+	
+	
+	
 }

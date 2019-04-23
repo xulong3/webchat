@@ -24,6 +24,12 @@
 			if(data.nodeId==2){
 				location.href='lmc_sys.jsp';
 			}
+			if(data.nodeId==3){
+				location.href='lmc_personal.jsp';
+			}
+			if(data.nodeId==5){
+				location.href='lmc_permission.jsp';
+			}
 		});
 	}
 	

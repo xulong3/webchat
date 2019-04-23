@@ -16,4 +16,11 @@ public interface LabelDao {
 	int updateSysLabelPortrait(SysLabel sysLabel);
 	
 	int updateSysLabel(SysLabel sysLabel);
+	
+	int insertLabel(Label label);
+	
+	int deleteLabelByAccountAndKey(Label label);
+	
+	int updateLabelValue(Label label);
+	
 }

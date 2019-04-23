@@ -111,6 +111,20 @@ public class LabelServiceImpl implements LabelService{
 	@Override
 	public String queryLabelCache(String token) {
 		Jedis jedis = jedisPool.getResource();
+		
+		if(!jedis.exists(RedisKey.LABEL_KEY_PREFIX+token)){
+			List<Label> labels = labelDao.selectLabelByAccount(token);
+			Map<String, String> map = new HashMap<String,String>();
+			for (Label label : labels) {
+				map.put(label.getLabelKey(), label.getLabelValue());
+			}
+			jedis.hmset(RedisKey.LABEL_KEY_PREFIX+token, map);
+			jedis.close();
+			return JsonUtil.mapToJsonString(map);
+			
+		}
+		
+		
 		Map<String, String> map = jedis.hgetAll(RedisKey.LABEL_KEY_PREFIX+token);
 		jedis.close();
 		return JsonUtil.mapToJsonString(map);
@@ -177,6 +191,44 @@ public class LabelServiceImpl implements LabelService{
 			throw new RuntimeException();
 		}
 		
+	}
+
+
+	@Override
+	public String saveLabel(Label label) {
+		int rows = this.labelDao.insertLabel(label);
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+		
+		
+	}
+
+
+	@Override
+	public String removeLabelByAccountAndKey(Label label) {
+		int rows = this.labelDao.deleteLabelByAccountAndKey(label);
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+	}
+
+
+	@Override
+	public String modifyLabelValue(Label label) {
+		int rows = this.labelDao.updateLabelValue(label);
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
 	}
 	
 	

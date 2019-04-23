@@ -2,6 +2,7 @@ package com.asiainfo.label.service;
 
 import java.util.List;
 
+import com.asiainfo.entity.Label;
 import com.asiainfo.entity.SysLabel;
 import com.asiainfo.vo.FriendItemVo;
 import com.asiainfo.vo.SysLabelVo;
@@ -17,4 +18,10 @@ public interface LabelService {
 	
 	String modifySysLabelPortrait(SysLabel sysLabel);
 	String modifySysLabel(SysLabelVo sysLabelVo);
+	String saveLabel(Label label);
+	
+	String removeLabelByAccountAndKey(Label label);
+	
+	String modifyLabelValue(Label label);
+	
 }

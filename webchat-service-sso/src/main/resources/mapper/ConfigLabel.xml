@@ -6,8 +6,8 @@
 	
 	
 	<insert id="insertConfigLabel" parameterType="configLabel">
-		insert into config_label(account,validate_way) 
-		values(#{account},#{validateWay})
+		insert into config_label(account,validate_way,friend_circle) 
+		values(#{account},#{validateWay},#{validateWay})
 	
 	</insert>
 </mapper>

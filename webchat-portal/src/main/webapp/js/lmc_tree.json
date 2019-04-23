@@ -17,7 +17,13 @@ var lmcTreeData=[
     },
     {
         text: '设置中心',
-        tags: ['SETTINGS']
+        selectable:false,
+        tags: ['SETTINGS'],
+        nodes: [
+            {
+                text: '权限设置'
+            }
+        ]
         
     }
 ]

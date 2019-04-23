@@ -106,6 +106,7 @@ public class UserServiceImpl implements UserService{
 		ConfigLabel cl = new ConfigLabel();
 		cl.setAccount(account);
 		cl.setValidateWay(1);
+		cl.setFriendCircle(1);
 		int rows4 = this.configLabelDao.insertConfigLabel(cl);
 		
 		if(rows1==1 && rows2==1 && rows3==1 && rows4==1){
