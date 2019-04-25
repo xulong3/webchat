@@ -2,8 +2,12 @@ package com.asiainfo.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -59,18 +63,70 @@ public class FileController {
 		return JsonUtil.objectToJsonString(msg);
 	}
 	
-	@RequestMapping("/getAllMessage")
-	public String getAllMessage(MessageVo messageVo){
+	@RequestMapping("/getTodayMessage")
+	public String getTodayMessage(MessageVo messageVo){
 		
-		List<MessageVo> voList = this.fileService.getAllMessage(messageVo);
-		
-		for (MessageVo v : voList) {
-			System.err.println(v.getSendTime());
-			System.err.println(v.getSender());
-			System.err.println(v.getIsRead());
-			System.err.println(v.getMessage());
+		Long startTime=null;
+		try {
+			startTime = new SimpleDateFormat("yyyy-MM-dd").parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date())).getTime();
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
 		}
 		
+		List<MessageVo> voList = this.fileService.getMessage(messageVo, startTime, null);
+		
+		
+		return JsonUtil.objectToJsonString(voList);
+	}
+	@RequestMapping("/getMessageOneDay")
+	public String getMessageOneDay(MessageVo messageVo,String day){
+		Long startTime=null;
+		Long endTime=null;
+		try {
+			Date date = new SimpleDateFormat("yyy-MM-dd").parse(day);
+			startTime=date.getTime();
+			Calendar c = Calendar.getInstance();
+			c.setTime(date);
+			c.add(Calendar.DATE, 1);
+			
+			endTime=c.getTime().getTime();
+			
+			
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
+		List<MessageVo> voList = this.fileService.getMessage(messageVo, startTime, endTime);
+		
+		return JsonUtil.objectToJsonString(voList);
+	}
+	
+	@RequestMapping("/getMessageDays")
+	public String getMessageDays(MessageVo messageVo){
+		List<String> list = this.fileService.getMessageDays(messageVo);
+		StringBuffer sb = new StringBuffer();
+		for (String s : list) {
+			sb.append(s).append(",");
+		}
+		return sb.substring(0, sb.length()-1).toString();
+	}
+	
+	@RequestMapping("/loadHistoryMessageTree")
+	public String loadHistoryMessageTree(MessageVo messageVo){
+		List<Map<String, Object>> list = this.fileService.getMessageGroupTree(messageVo);
+		System.err.println(list.size());
+		return JsonUtil.listToJsonString(list);
+		
+	}
+	
+	
+	@RequestMapping("/getHistoryMessage")
+	public String getHistoryMessage(MessageVo messageVo){
+		
+		
+		List<MessageVo> voList = this.fileService.getMessage(messageVo, null, null);
 		
 		return JsonUtil.objectToJsonString(voList);
 	}
@@ -118,5 +174,8 @@ public class FileController {
 		
 		return "";
 	}
+	
+	
+	
 	
 }

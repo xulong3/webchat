@@ -78,7 +78,7 @@ $(function(){
 		
 		var frame=parent.parent.$("iframe");
 		var showName=(friendVo.remark=='' ||  friendVo.remark==undefined)?
-				friendVo.nickname:(friendVo.remark+"("+friendVo.nickname+")");
+				friendVo.nickname:friendVo.remark;
 		$(frame).attr('src','chat_list.jsp?account='
 				+params.account+"&portrait="+friendVo.portrait+"&showName="+showName);
 	});

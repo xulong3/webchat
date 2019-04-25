@@ -1,10 +1,10 @@
 package com.asiainfo.util;
 
+import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import com.asiainfo.entity.User;
 
 public class JsonUtil {
 	
@@ -38,7 +38,16 @@ public class JsonUtil {
 	}
 	
 	public static String mapToJsonString(Map<String,String> map){
+		
+		
 		String jsonString = JSON.toJSONString(map);
+		return jsonString;
+	}
+	
+	public static String listToJsonString(List<Map<String, Object>> list){
+		
+		
+		String jsonString = JSON.toJSONString(list);
 		return jsonString;
 	}
 	

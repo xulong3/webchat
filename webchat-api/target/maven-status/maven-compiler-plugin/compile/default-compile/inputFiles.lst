@@ -19,6 +19,7 @@ E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainf
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\label\service\ConfigLabelService.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\vo\FriendItemVo.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\util\HttpUtil.java
+E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\vo\SysLabelVo.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\util\ExceptionName.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\exception\ActiveAccountException.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\entity\Friend.java
@@ -31,7 +32,6 @@ E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainf
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\util\ExceptionUtil.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\message\service\FriendService.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\sso\service\UserService.java
-E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\util\MessageUtil.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\common\service\BaseExceptionService.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\entity\UnknownException.java
 E:\gdesign\eclipseworkspace\webchat-parent\webchat-api\src\main\java\com\asiainfo\util\ExceptionCode.java

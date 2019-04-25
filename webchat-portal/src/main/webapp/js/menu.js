@@ -59,6 +59,9 @@ function refreshLabelCache(account,isClear){
 			"isClear":isClear
 		},
 		success:function (result) {
+			if(result==undefined || result==''){
+				return;
+			}
 			labelObj=$.parseJSON(result);
 			
 		}

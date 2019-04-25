@@ -17,10 +17,20 @@ function connect() {
                                          这个是在控制器的@sendto中定义的 */
         stompClient.subscribe('/user/'+token+'/p2pchat', function(response){
         	var body=response.body;
+        	
         	body=JSON.parse(body);
         	//判断是否在会话列表页面
-        	
-        	alert(body.msg);
+        	if($("iframe").attr('src')!=undefined && $("iframe").attr('src').substr(0,13)=='chat_list.jsp'){
+        		
+        		$("iframe").contents().find("#msg-ul").append("<li style='color: blue;'>"+body.showName
+        				+"&nbsp;&nbsp;"+body.sendTime
+						+"</li><li style='display: inline-block;margin-left: 20px;'>"+body.msg+"</li>");
+        		
+        		$("iframe").contents().find("#msg-row")[0].scrollTop = $("iframe").contents().find("#msg-row")[0].scrollHeight;
+        	}else{
+        		
+        		alert(body.msg);
+        	}
             
         });
     });
@@ -28,7 +38,7 @@ function connect() {
 connect();
 
 //通过stompClient.send向/welcome目标（distination）发送消息，这个是在控制器的@messageMapping中定义的
-function sendMsg(receiver,msg) {
+function sendMsg(receiver,msg,sendTime) {
     
     stompClient.send(
         "/chat", 
@@ -36,7 +46,8 @@ function sendMsg(receiver,msg) {
     	JSON.stringify({ 
     		'sender': token,
     		'receiver':receiver,
-    		'msg':msg	
+    		'msg':msg,
+    		'sendTime':sendTime
     	})
     );
 }

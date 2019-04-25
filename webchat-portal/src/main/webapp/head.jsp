@@ -3,6 +3,7 @@
 <link href="./font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet">
 <link href="./bootstrap-switch/css/bootstrap-switch.min.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="./JQuery/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./bootstrap-treeview/js/bootstrap-treeview.min.js"></script>
 <script type="text/javascript" src="./bootstrap-switch/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="./My97DatePicker/WdatePicker.js"></script>

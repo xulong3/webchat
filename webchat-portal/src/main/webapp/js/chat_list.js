@@ -5,10 +5,10 @@
 var params={};
 UrlSearch(params);
 
-function loadHistoryMsg(){
+function loadTodayMsg(){
 	$.ajax({
 		type:'post',
-		url:ctx+'/getAllMessage',
+		url:ctx+'/getTodayMessage',
 		data:{
 			sender:userObj.account,
 			receiver:params.account
@@ -16,24 +16,41 @@ function loadHistoryMsg(){
 		dataType:'json',
 		success:function(result){
 			result=JSON.parse(result);
+			
 			for ( var index in result) {
-				$("#msg-ul").append("<li style='color: blue;'>我&nbsp;&nbsp;"+result[index].sendTime
-						+"</li><li style='display: inline-block;margin-left: 10px;'>"+result[index].message+"</li>");
+				var show=result[index].sender==userObj.account?"我":(params.showName);
+				$("#msg-ul").append("<li style='color: blue;'>"+show+"&nbsp;&nbsp;"+result[index].sendTime
+						+"</li><li style='display: inline-block;margin-left: 20px;'>"+result[index].message+"</li>");
 			}
+			//滚动条置底
+			$("#msg-row")[0].scrollTop = $("#msg-row")[0].scrollHeight;
 			
 		}
 		
 	});
 }
 
-
+function initTree(data){
+	$('#history-tree').treeview({
+	    data:data,
+	    showTags:true,
+	    onhoverColor:'white',
+	    selectedBackColor: 'green',
+	    collapseIcon: "glyphicon glyphicon-chevron-down",
+	    expandIcon: "glyphicon glyphicon-chevron-right",
+	    levels:1,
+	    showBorder:false,
+	    showCheckbox:true
+	});
+	
+}
 
 
 
 $(function(){
 	
 	$("#chat-list-container").css('height',frame);
-	loadHistoryMsg();
+	loadTodayMsg();
 	
 	//页面初始化
 	$("#chat-list-ul").append("<li><div  style='border-bottom: 1px solid black;'>" 
@@ -60,10 +77,15 @@ $(function(){
 			},
 			dataType:'json',
 			success:function(result){
+				
+				
 				result=JSON.parse(result);
 				
 				$("#msg-ul").append("<li style='color: blue;'>我&nbsp;&nbsp;"+result.sendTime
-						+"</li><li style='display: inline-block;margin-left: 10px;'>"+msg+"</li>");
+						+"</li><li style='display: inline-block;margin-left: 20px;'>"+msg+"</li>");
+				
+				//滚动条置底
+				$("#msg-row")[0].scrollTop = $("#msg-row")[0].scrollHeight;
 				
 				//查询用户状态
 				$.ajax({
@@ -77,7 +99,7 @@ $(function(){
 						
 						if(result=="1"){
 							
-							//sendMsg(params.account,msg);
+							sendMsg(params.account,msg,result.sendTime);
 						}
 					}
 					
@@ -99,7 +121,48 @@ $(function(){
         }
 	});
 	
+	$("#open-history").click(function(){
+		/*$.ajax({
+			type:'post',
+			url:ctx+'/getHistoryMessage',
+			data:{
+				sender:userObj.account,
+				receiver:params.account
+			},
+			dataType:'json',
+			success:function(result){
+				result=JSON.parse(result);
+				for ( var index in result) {
+					$("#modal-msg-ul").append("<li style='color: blue;'>我&nbsp;&nbsp;"+result[index].sendTime
+							+"</li><li style='display: inline-block;margin-left: 20px;'>"+result[index].message+"</li>");
+				}
+				//滚动条置底
+				$("#modal-msg-row")[0].scrollTop = $("#modal-msg-row")[0].scrollHeight;
+				
+			}
+			
+		});*/
+		
+		$.ajax({
+			type:'post',
+			url:ctx+'/loadHistoryMessageTree',
+			data:{
+				sender:userObj.account,
+				receiver:params.account
+				
+			},
+			dataType:'json',
+			success:function(result){
+				
+				result=JSON.parse(result);
+				initTree(result);
+				$("#history").modal('show')
+			}
+			
+		});
+		
 	
+	});
 	
 	
 	

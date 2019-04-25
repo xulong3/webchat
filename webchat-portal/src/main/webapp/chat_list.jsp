@@ -21,12 +21,12 @@
 		
 		</div>
 		<div class="col-md-9" style="height: 100%;padding: 0;overflow: hidden;">
-			<div class="row" style="border-bottom: 1px solid green;margin: 0;height: 10.1%;background-color: #CDBE70;">
-				
+			<div class="row" style="border-bottom: 1px solid green;margin: 0;height: 10.1%;background-color: #CDBE70;padding-left: 20px;">
+				<a id="open-history" href="javascript:void(0)">历史记录</a>
 				<h3 style="display: inline-block;margin-left: 630px;margin-top: 10px;"></h3>
 			
 			</div>
-			<div class="row" style="margin: 0;height: 70%;overflow-y:scroll;">
+			<div id="msg-row" class="row" style="margin: 0;height: 70%;overflow-y:scroll;">
 				<ul style="list-style: none;" id="msg-ul">
 					
 					
@@ -56,5 +56,34 @@
 		
 	</div>
 	
+	
+	<div class="modal fade" tabindex="-1" role="dialog" id="history">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+	        
+	        <h4 class="modal-title">历史记录</h4>
+		</div>
+		      
+		<div class="modal-body">
+			<div id="modal-msg-row" class="row" style="margin: 0;overflow-y:scroll;height: 300px;">
+				<div id="history-tree" style="height: 100%;width: 100%;">
+				</div>
+				
+			
+			</div>
+		</div>
+		
+		<div class="modal-footer">
+        	<button type="button" class="btn-danger" data-dismiss="modal">关闭</button>
+      	</div>      
+      	
+	</div>
+	</div>
+	</div>
+	
+	
+	
 </body>
+
 </html>

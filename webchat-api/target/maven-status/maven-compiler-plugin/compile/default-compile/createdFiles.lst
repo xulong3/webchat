@@ -31,8 +31,8 @@ com\asiainfo\common\service\BaseExceptionService.class
 com\asiainfo\util\ExceptionCode.class
 com\asiainfo\entity\BaseBusinessException.class
 com\asiainfo\util\JsonUtil.class
-com\asiainfo\util\MessageUtil.class
 com\asiainfo\message\service\FriendService.class
+com\asiainfo\vo\SysLabelVo.class
 com\asiainfo\entity\User.class
 com\asiainfo\entity\ConfigLabel.class
 com\asiainfo\util\service\impl\JdbcServiceImpl.class
