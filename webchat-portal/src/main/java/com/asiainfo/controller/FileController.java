@@ -2,6 +2,8 @@ package com.asiainfo.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -31,11 +33,11 @@ public class FileController {
 	private LabelService labelService;
 
 	@RequestMapping("/uploadUserRootDir")
-	public String uploadUserRootDir(String token,String timeStamp){
+	public String uploadUserRootDir(String token,String date){
 		LoggerUtil.info(this.getClass(), "----------"+token);
-		LoggerUtil.info(this.getClass(), "----------"+timeStamp);
+		LoggerUtil.info(this.getClass(), "----------"+date);
 		
-		String res = fileService.createUserRootDir(token, timeStamp);
+		String res = fileService.createUserRootDir(token, date);
 		if("yes".equals(res)){
 			return WebResult.INIT_USER_ROOT_SUCCESS;
 		}else{
@@ -51,11 +53,26 @@ public class FileController {
 	}
 	
 	@RequestMapping("/saveMessage")
-	public String saveMessage(String userAccount,String friendAccount,String message){
+	public String saveMessage(MessageVo messageVo){
 		
-		
-		MessageVo msg = this.fileService.saveMessageToFile(userAccount, friendAccount, message);
+		MessageVo msg = this.fileService.saveMessageToFile(messageVo);
 		return JsonUtil.objectToJsonString(msg);
+	}
+	
+	@RequestMapping("/getAllMessage")
+	public String getAllMessage(MessageVo messageVo){
+		
+		List<MessageVo> voList = this.fileService.getAllMessage(messageVo);
+		
+		for (MessageVo v : voList) {
+			System.err.println(v.getSendTime());
+			System.err.println(v.getSender());
+			System.err.println(v.getIsRead());
+			System.err.println(v.getMessage());
+		}
+		
+		
+		return JsonUtil.objectToJsonString(voList);
 	}
 	
 	
@@ -63,7 +80,7 @@ public class FileController {
 	public String uploadPortrait(String account,MultipartFile portrait){
 		
 		User user = this.userService.queryUserByAccount(account);
-		String path="/"+user.getAccount()+"_"+user.getActTime().getTime()+"/";
+		String path="/"+user.getAccount()+"_"+new SimpleDateFormat("yyyyMMdd").format(user.getActTime())+"/";
 		
 		String fileName=portrait.getOriginalFilename();
 		

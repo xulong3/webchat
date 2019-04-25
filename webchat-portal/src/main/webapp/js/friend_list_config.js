@@ -22,6 +22,54 @@ function agreeApply(event,id){
 		
 	});
 }
+
+function cancelApply(btn){
+	
+	$.ajax({
+		type:'post',
+		url:ctx+'/removeFriendApply',
+		data:{
+			userAccount:userObj.account,
+			friendAccount:$(btn).prev().prev().prev().text(),
+			type:"0"
+		},
+		dataType:'text',
+		success:function(result){
+			alert(result);
+			window.location.href='friend_list_config.jsp';
+		}
+		
+	});
+	
+}
+
+function refuseApply(btn){
+	
+	$.ajax({
+		type:'post',
+		url:ctx+'/removeFriendApply',
+		data:{
+			userAccount:userObj.account,
+			friendAccount:$(btn).prev().prev().prev().prev().text(),
+			type:"1"
+		},
+		dataType:'text',
+		success:function(result){
+			alert(result);
+			window.location.href='friend_list_config.jsp';
+		}
+		
+	});
+	
+}
+
+
+
+
+
+
+
+
 $(function(){
 	
 	$("#friend-list-config-container").css('height',frame);
@@ -48,7 +96,7 @@ $(function(){
 									+result[index].userAccount+"</a>验证信息:<span class='right-space-span'>"
 									+result[index].validateInfo+"</span><span class='right-space-span'>状态:申请中...</span>" 
 									+"<button class='btn-success right-space-span' onclick='agreeApply(event,"+result[index].id+")'>同意</button>"
-									+"<button class='btn-danger right-space-span'>拒绝</button></div></li>");
+									+"<button onclick='refuseApply(this)' class='btn-danger right-space-span'>拒绝</button></div></li>");
 							
 						}
 					}else{
@@ -91,7 +139,7 @@ $(function(){
 							$("#apply_byme_ul").append("<li><div style='margin-bottom:10px;'>账号:<a class='right-space-span' href='javascript:void(0)'>"
 									+result[index].friendAccount+"</a>验证信息:<span class='right-space-span'>"
 									+result[index].validateInfo+"</span><span class='right-space-span'>状态:申请中...</span>" 
-									+"<button class='btn-danger right-space-span'>取消申请</button></div></li>");
+									+"<button onclick='cancelApply(this)' class='btn-danger right-space-span'>取消申请</button></div></li>");
 							
 						}
 						
@@ -167,6 +215,7 @@ $(function(){
 			},
 			dataType:'text',
 			success:function(result){
+				
 				if(result=='需要验证信息'){
 					$("#add-friend").hide();
 					$("input[name='friend-account']").attr("disabled","disabled");

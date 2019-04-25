@@ -1,5 +1,6 @@
 package com.asiainfo.sso.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -112,7 +113,7 @@ public class UserServiceImpl implements UserService{
 		if(rows1==1 && rows2==1 && rows3==1 && rows4==1){
 			
 			
-			return String.valueOf(actTime.getTime());
+			return new SimpleDateFormat("yyyyMMdd").format(actTime);
 		}else{
 			throw new ActiveAccountException(account);
 		}

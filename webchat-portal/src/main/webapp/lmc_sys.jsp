@@ -53,7 +53,7 @@
 					<tr>
 						<td>生日</td>
 						<td colspan="3">
-		<input name="birthday" type="text" style="width: 80%;" id="birthday" 
+		<input name="birthday" type="text" style="width: 80%;" id="birthday" class="Wdate"
 		onclick="WdatePicker({isShowClear:false,readOnly:true,skin:'whyGreen',isShowToday:false,qsEnabled:false,onpicked:dateChange})">
 		
 						</td>

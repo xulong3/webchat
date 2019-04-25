@@ -92,14 +92,14 @@ public class SsoController {
 		}
 		
 		try {
-			String timeStamp = this.userService.activeAccount(account);
+			String date = this.userService.activeAccount(account);
 			//如果账号激活成功，就向redis存入用户登录状态的key,且初始设置为离线
 			String res = this.sessionManager.saveUserStatus(account, 0);
 			//激活账号成功后，调用fileController,为用户创建文件夹
 			Map<String, String> params = new HashMap<String,String>();
 			params.put("token", account);
-			params.put("timeStamp", timeStamp);
-			String res2 = HttpUtil.sendPost("http://localhost:8081/webchat-portal/uploadUserRootDir", params);
+			params.put("date", date);
+			String res2 = HttpUtil.sendPost("http://localhost:8081/uploadUserRootDir", params);
 			
 			LoggerUtil.info(this.getClass(), "----------"+res2);
 			
@@ -292,6 +292,12 @@ public class SsoController {
 		return WebResult.PWD_MODIFY_SUCCESS;
 	}
 	
-	
+	@RequestMapping("/getStatus")
+	public String getStatus(String token){
+		int status = this.sessionManager.queryUserStatus(token);
+		
+		return status+"";
+		
+	}
 	
 }

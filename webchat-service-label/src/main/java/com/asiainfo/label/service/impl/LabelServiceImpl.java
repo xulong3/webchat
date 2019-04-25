@@ -114,6 +114,10 @@ public class LabelServiceImpl implements LabelService{
 		
 		if(!jedis.exists(RedisKey.LABEL_KEY_PREFIX+token)){
 			List<Label> labels = labelDao.selectLabelByAccount(token);
+			if(labels==null || labels.size()==0){
+				return "";
+			}
+			
 			Map<String, String> map = new HashMap<String,String>();
 			for (Label label : labels) {
 				map.put(label.getLabelKey(), label.getLabelValue());

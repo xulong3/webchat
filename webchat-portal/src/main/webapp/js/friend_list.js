@@ -7,7 +7,30 @@ function loadFriendInfo(friendAccount){
 	$("iframe").attr("src","friend_detail.jsp?account="+friendAccount);
 }
 
-
+function getStatus(friendAccount){
+	var res;
+	$.ajax({
+		type:'post',
+		url:ctx+'/getStatus',
+		async:false,
+		data:{
+			token:friendAccount
+		},
+		dataType:'text',
+		success:function(result){
+			
+			if(result=='0'){
+				res= "离线";
+			}else{
+				res= "在线";
+			}
+			
+		}
+		
+	});
+	return res;
+	
+}
 
 //方向标志，0表示左，1表示右
 var flag=1;
@@ -29,8 +52,6 @@ $(function(){
 			return;
 		}
 		
-		
-		
 	});
 	
 	
@@ -45,16 +66,20 @@ $(function(){
 		dataType:'json',
 		success:function(result){
 			result=JSON.parse(result);
+			
 			for ( var index in result) {
+				//以账号做key
 				friendVoList[result[index].account]=result[index];
 				
-				var showName=result[index].showName==''?result[index].nickname:(result[index].showName+"("+result[index].nickname+")");
+				var showName=(result[index].remark=='' ||  result[index].remark==undefined)?
+						result[index].nickname:(result[index].remark+"("+result[index].nickname+")");
 				
 				$("#friend-list-ul").append("<li class='friend-li'>" 
 						+"<img class='friend-img' src='http://localhost:81"+result[index].portrait+"'>"
-						+"<div class='friend-info'><a href='javascript:void(0)' onclick='loadFriendInfo("+result[index].account+")'>"
+						+"<div class='friend-info'><a href='javascript:void(0)' " 
+						+"onclick='loadFriendInfo("+result[index].account+")'>"
 						+showName
-						+"</a><br>在线</div></li>");
+						+"</a><br>"+getStatus(result[index].account)+"</div></li>");
 				
 				
 			}

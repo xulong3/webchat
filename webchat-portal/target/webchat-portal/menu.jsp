@@ -49,7 +49,10 @@
 				<iframe style="width: 100%;height: 100%;" frameborder="0"></iframe>
 			
 			</div>
-			<div class="col-md-2" style="height: 100%;background-color: red;"></div>
+			<!-- 通知面板 -->
+			<div class="col-md-2" style="height: 100%;border-left: 1px solid green;">
+			
+			</div>
 		</div>
 	
 	

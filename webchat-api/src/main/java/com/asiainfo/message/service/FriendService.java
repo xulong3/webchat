@@ -17,5 +17,9 @@ public interface FriendService {
 	String modifyFriendAddStatusById(Friend friend);
 	
 	List<Friend> queryFriend(Friend friend);
+	
+	String removeFriend(Friend friend);
+	
+	
 
 }

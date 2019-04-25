@@ -11,4 +11,6 @@ public interface FriendDao {
 	List<Friend> selectFriendByFriendAccount(Friend friend);
 	int updateFriendAddStatusById(Friend friend);
 	List<Friend> selectFriendByAddStatusAndTwoAccount(Friend friend);
+	
+	int deleteFriend(Friend friend);
 }

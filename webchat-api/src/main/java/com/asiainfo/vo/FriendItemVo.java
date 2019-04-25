@@ -14,11 +14,8 @@ public class FriendItemVo implements Serializable{
 	private String portrait;
 	private String remark;
 	private String nickname;
-	private String showName;
 	private String account;
-	private SysLabel sysLabel;
-	private Label label;
-	private User authLabel;
+	
 	
 	public String getAccount() {
 		return account;
@@ -45,30 +42,7 @@ public class FriendItemVo implements Serializable{
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getShowName() {
-		return showName;
-	}
-	public void setShowName(String showName) {
-		this.showName = showName;
-	}
-	public SysLabel getSysLabel() {
-		return sysLabel;
-	}
-	public void setSysLabel(SysLabel sysLabel) {
-		this.sysLabel = sysLabel;
-	}
-	public Label getLabel() {
-		return label;
-	}
-	public void setLabel(Label label) {
-		this.label = label;
-	}
-	public User getAuthLabel() {
-		return authLabel;
-	}
-	public void setAuthLabel(User authLabel) {
-		this.authLabel = authLabel;
-	}
+
 	
 	
 }

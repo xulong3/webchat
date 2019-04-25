@@ -44,6 +44,10 @@
 	
 	</select>
 	
+	<delete id="deleteFriend" parameterType="friend">
+		delete from friend where ((user_account=#{userAccount} AND friend_account=#{friendAccount}) 
+		OR (user_account=#{friendAccount} AND friend_account=#{userAccount})) and add_status=#{addStatus}
 	
+	</delete>
 	
 </mapper>

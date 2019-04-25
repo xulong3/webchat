@@ -47,6 +47,18 @@
 			</table>
 		</div>
 		
+		<div class="row" id="label-row" style="margin: 0;padding-left: 30px;padding-top: 20px;padding-bottom: 100px;">
+			<h4>个性标签</h4>
+			<table border="1" style="width: 80%;" id="label-table">
+				<tr>
+					<td style="width: 20%;"></td>
+					<td style="width: 80%;"></td>
+				</tr>
+			
+			
+			</table>
+		</div>
+		
 		
 		
 		

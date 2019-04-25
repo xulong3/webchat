@@ -13,17 +13,17 @@
 </head>
 <body>
 	<div id="chat-list-container">
-		<div class="col-md-3" style="height: 100%;border-right: 1px solid black;padding:0; ">
+		<div class="col-md-3" style="height: 100%;border-right: 1px solid green;padding:0; ">
 		
 			<ul style="list-style: none;padding: 0;" id="chat-list-ul">
 				
 			</ul>
 		
 		</div>
-		<div class="col-md-9" style="height: 100%;padding: 0;">
-			<div class="row" style="border-bottom: 1px solid black;margin: 0;height: 10%;">
+		<div class="col-md-9" style="height: 100%;padding: 0;overflow: hidden;">
+			<div class="row" style="border-bottom: 1px solid green;margin: 0;height: 10.1%;background-color: #CDBE70;">
 				
-				<h3 style="display: inline-block;margin-left: 20px;margin-top: 10px;"></h3>
+				<h3 style="display: inline-block;margin-left: 630px;margin-top: 10px;"></h3>
 			
 			</div>
 			<div class="row" style="margin: 0;height: 70%;overflow-y:scroll;">
@@ -35,10 +35,10 @@
 				
 			
 			</div>
-			<div class="row" style="border-top: 1px solid black;margin: 0;height: 20%;">
+			<div class="row" style="border-top: 1px solid green;margin: 0;height: 20%;">
 				
 			
-				<textarea style="width: 90%;height: 90%;resize: none;outline: none;float: left;border: none;"></textarea>
+				<textarea id="input-area" style="width: 90%;height: 90%;resize: none;outline: none;float: left;border: none;"></textarea>
 				
 				<div style="float: left;padding-left: 10px;padding-top: 10px;">
 					<button id="send-msg-btn" class="btn-success">发送</button>

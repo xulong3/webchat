@@ -73,6 +73,8 @@ public class WebResult {
 	
 	public static final String BLANK="";
 	
+	public static final String FRIEND_APPLY_CANCEL_SUCCESS="取消成功！";
 	
+	public static final String FRIEND_APPLY_REFUSE_SUCCESS="拒绝成功！";
 	
 }

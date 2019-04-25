@@ -8,7 +8,7 @@
 	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 	
 	<!-- dubbo提供方配置timeout -->
-	<dubbo:provider timeout="5000" />
+	<dubbo:provider timeout="50000" />
 	
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="sso-provider"  />

@@ -36,16 +36,19 @@ public class MessageController {
 	@RequestMapping("/loadFriends")
 	public String loadFriends(Friend friend){
 		
+		
+		
 		List<Friend> friends = this.friendService.queryFriend(friend);
 		if(friends.size()==0){
 			return "";
 		}
 		List<FriendItemVo> itemVo = new ArrayList<FriendItemVo>();
-		
+		//遍历每一个friend
 		for (Friend f : friends) {
+			//获取好友的账号
 			String account=(f.getUserAccount().equals(friend.getUserAccount()))?f.getFriendAccount():f.getUserAccount();
+			//获取好友的备注
 			String remark=(f.getUserAccount().equals(friend.getUserAccount()))?f.getUserRemark():f.getFriendRemark();
-			
 			FriendItemVo item = new FriendItemVo();
 			item.setAccount(account);
 			item.setRemark(remark);
@@ -56,30 +59,15 @@ public class MessageController {
 		
 		for (FriendItemVo item : itemVo) {
 			
-			
 			for (User u : users) {
 				if(u.getAccount().equals(item.getAccount())){
-					item.setAuthLabel(u);
 					item.setNickname(u.getNickname());
-					if(item.getRemark()==null || "".equals(item.getRemark())){
-						
-						item.setShowName(u.getNickname());
-					}else{
-						item.setShowName(item.getRemark());
-					}
-					break;
 				}
 			}
-			
-			
 			for (SysLabel s : sysLabels) {
-				item.setSysLabel(s);
+				
 				if(s.getAccount().equals(item.getAccount())){
-					
 					item.setPortrait(s.getPortrait());
-					break;
-				}else{
-					continue;
 				}
 			}
 			
@@ -170,7 +158,7 @@ public class MessageController {
 			}
 		}
 		
-		String way = this.configLabelService.queryValidateWayByAccount(account);
+		String way = this.configLabelService.queryValidateWayByAccount(friendAccount);
 		if("0".equals(way)){
 			
 			f.setAddStatus(1);
@@ -191,6 +179,39 @@ public class MessageController {
 		
 		return null;
 	}
+	
+	@RequestMapping("/removeFriendApply")
+	public String removeFriendApply(Friend friend,String type){
+		friend.setAddStatus(0);
+		String res = this.friendService.removeFriend(friend);
+		
+		if(type.equals("0")){
+			
+			return WebResult.FRIEND_APPLY_CANCEL_SUCCESS;
+		}
+		if(type.equals("1")){
+			return WebResult.FRIEND_APPLY_REFUSE_SUCCESS;
+
+		}
+		return null;
+	}
+	
+	@RequestMapping("/loadFriendAllLabel")
+	public String loadFriendAllLabel(String account){
+		String sysLabel = this.labelService.querySysLabelCache(account);
+		String label = this.labelService.queryLabelCache(account);
+		User user = this.userService.queryUserByAccount(account);
+		String userJson = JsonUtil.objectToJsonString(user);
+		
+		if(!label.equals("")){
+			
+			return "["+userJson+","+sysLabel+","+label+"]";
+		}
+		
+		return "["+userJson+","+sysLabel+"]";
+		
+	}
+	
 	
 	
 }

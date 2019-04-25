@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.asiainfo.entity.Friend;
 import com.asiainfo.message.dao.FriendDao;
 import com.asiainfo.message.service.FriendService;
+import com.asiainfo.vo.MessageVo;
 
 
 @Transactional
@@ -63,5 +64,17 @@ public class FriendServiceImpl implements FriendService{
 		
 		return this.friendDao.selectFriendByAddStatusAndTwoAccount(friend);
 	}
+	@Override
+	public String removeFriend(Friend friend) {
+		int rows = this.friendDao.deleteFriend(friend);
+		
+		if(rows==1){
+			
+			return "yes";
+		}else{
+			throw new RuntimeException();
+		}
+	}
+	
 	
 }
