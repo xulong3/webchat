@@ -73,6 +73,12 @@ public class FriendDynamicServiceImpl implements FriendDynamicService{
 		return "yes";
 	}
 
+	@Override
+	public String removeFriendDynamicByDynamicId(String dynamicId) {
+		int rows = this.friendDynamicDao.deleteFriendDynamicByDynamicId(dynamicId);
+		return "yes";
+	}
+
 
 	
 }

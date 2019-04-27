@@ -30,5 +30,6 @@
     <dubbo:reference id="chatListService" interface="com.asiainfo.message.service.ChatListService" />
     <dubbo:reference id="friendDynamicService" interface="com.asiainfo.message.service.FriendDynamicService" />
     <dubbo:reference id="friendDynamicPraiseService" interface="com.asiainfo.message.service.FriendDynamicPraiseService" />
+    <dubbo:reference id="friendDynamicCommentService" interface="com.asiainfo.message.service.FriendDynamicCommentService" />
     
 </beans>

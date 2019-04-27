@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.message.dao.FriendDynamicCommentDao">
+
+	<resultMap type="com.asiainfo.entity.FriendDynamicComment" id="friendDynamicCommentMap">
+	
+		<id property="commentId" column="comment_id"/>
+		<result property="dynamicId" column="dynamic_id"/>
+		<result property="commentAccount" column="comment_account"/>
+		<result property="commentTime" column="comment_time"/>
+		<result property="commentContent" column="comment_content"/>
+		
+	</resultMap>
+
+ 	<insert id="insertFriendDynamicComment" parameterType="friendDynamicComment">
+ 		insert into friend_dynamic_comment(comment_id,dynamic_id,comment_account,comment_time,comment_content) 
+ 		values(#{commentId},#{dynamicId},#{commentAccount},#{commentTime},#{commentContent})
+ 	</insert>
+ 	 
+ 	<select id="selectFriendDynamicCommentByDynamicId" parameterType="string" resultMap="friendDynamicCommentMap">
+ 		select * from friend_dynamic_comment where dynamic_id=#{dynamicId}
+ 	
+ 	</select>
+ 	
+</mapper>

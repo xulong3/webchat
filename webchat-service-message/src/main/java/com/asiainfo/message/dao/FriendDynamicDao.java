@@ -13,4 +13,6 @@ public interface FriendDynamicDao {
 	
 	int updateFriendDynamicPraiseCountMinus(String dynamicId);
 	
+	int deleteFriendDynamicByDynamicId(String dynamicId);
+	
 }

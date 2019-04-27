@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.asiainfo.entity.ChatList" alias="chatList"/>
 		<typeAlias type="com.asiainfo.entity.FriendDynamic" alias="friendDynamic"/>
 		<typeAlias type="com.asiainfo.entity.FriendDynamicPraise" alias="friendDynamicPraise"/>
+		<typeAlias type="com.asiainfo.entity.FriendDynamicComment" alias="friendDynamicComment"/>
 	</typeAliases>
 	
 	

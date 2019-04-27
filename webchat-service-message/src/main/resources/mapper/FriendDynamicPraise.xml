@@ -6,7 +6,7 @@
 	<resultMap type="com.asiainfo.entity.FriendDynamicPraise" id="friendDynamicPraiseMap">
 	
 		<id property="praiseId" column="praise_id"/>
-		<id property="dynamicId" column="dynamic_id"/>
+		<result property="dynamicId" column="dynamic_id"/>
 		<result property="praiseAccount" column="praise_account"/>
 		<result property="praiseTime" column="praise_time"/>
 		

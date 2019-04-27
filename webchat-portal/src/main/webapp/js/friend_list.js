@@ -35,7 +35,7 @@ function getStatus(friendAccount){
 //方向标志，0表示左，1表示右
 var flag=1;
 $(function(){
-	
+
 	$("#friend-list-container").css('height',frame);
 	
 	$("#config-i").click(function(){
@@ -65,6 +65,12 @@ $(function(){
 		},
 		dataType:'json',
 		success:function(result){
+			
+			if(result=='' || result=='[]'){
+				$("#friend-list-ul").append("<li><h3>当前没有任何好友!</h3></li>");
+				return;
+			}
+			
 			result=JSON.parse(result);
 			
 			for ( var index in result) {

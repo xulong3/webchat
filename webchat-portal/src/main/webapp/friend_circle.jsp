@@ -17,9 +17,6 @@
 		<div id="friend-dynamic" class="col-sm-8">
 			<ul id="dynamic-ul">
 				
-				
-			
-				
 			</ul>
 			
 		</div>

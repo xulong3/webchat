@@ -14,22 +14,26 @@ import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asiainfo.comparator.FriendDynamicCommentComparator;
 import com.asiainfo.comparator.FriendDynamicComparator;
 import com.asiainfo.entity.ChatList;
 import com.asiainfo.entity.Friend;
 import com.asiainfo.entity.FriendDynamic;
+import com.asiainfo.entity.FriendDynamicComment;
 import com.asiainfo.entity.FriendDynamicPraise;
 import com.asiainfo.entity.SysLabel;
 import com.asiainfo.entity.User;
 import com.asiainfo.label.service.ConfigLabelService;
 import com.asiainfo.label.service.LabelService;
 import com.asiainfo.message.service.ChatListService;
+import com.asiainfo.message.service.FriendDynamicCommentService;
 import com.asiainfo.message.service.FriendDynamicPraiseService;
 import com.asiainfo.message.service.FriendDynamicService;
 import com.asiainfo.message.service.FriendService;
 import com.asiainfo.sso.service.UserService;
 import com.asiainfo.util.JsonUtil;
 import com.asiainfo.util.WebResult;
+import com.asiainfo.vo.FriendDynamicCommentVo;
 import com.asiainfo.vo.FriendDynamicVo;
 import com.asiainfo.vo.FriendItemVo;
 
@@ -51,6 +55,8 @@ public class MessageController {
 	private FriendDynamicService friendDynamicService;
 	@Resource
 	private FriendDynamicPraiseService friendDynamicPraiseService;
+	@Resource
+	private FriendDynamicCommentService friendDynamicCommentService;
 	
 	
 	@RequestMapping("/loadFriends")
@@ -437,4 +443,49 @@ public class MessageController {
 	}
 	
 	
+	@RequestMapping("/saveComment")
+	public String saveComment(FriendDynamicComment friendDynamicComment){
+		friendDynamicComment.setCommentId(UUID.randomUUID().toString().replace("-", ""));
+		friendDynamicComment.setCommentTime(new Date());
+		String res = this.friendDynamicCommentService.saveFriendDynamicComment(friendDynamicComment);
+		
+		return WebResult.DYNAMIC_COMMENT_SUCCESS;
+	}
+	
+	@RequestMapping("/queryFriendDynamicCommentByDynamicId")
+	public String queryFriendDynamicCommentByDynamicId(String dynamicId){
+		List<FriendDynamicCommentVo> vos=new ArrayList<FriendDynamicCommentVo>();
+		
+		List<FriendDynamicComment> comments = this.friendDynamicCommentService.queryFriendDynamicCommentByDynamicId(dynamicId);
+		
+		if(comments!=null && comments.size()>0){
+			Collections.sort(comments,new FriendDynamicCommentComparator());
+			
+			for (FriendDynamicComment dc : comments) {
+				FriendDynamicCommentVo vo = new FriendDynamicCommentVo();
+				vo.setCommentId(dc.getCommentId());
+				vo.setCommentAccount(dc.getCommentAccount());
+				vo.setCommentContent(dc.getCommentContent());
+				vo.setCommentTime(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(dc.getCommentTime()));
+				vo.setDynamicId(dynamicId);
+				//查询该条评论人的昵称
+				User user = this.userService.queryUserByAccount(vo.getCommentAccount());
+				vo.setNickname(user.getNickname());
+				vos.add(vo);
+			}
+			return JsonUtil.listObjectToJsonString(vos);
+		}else{
+			return WebResult.BLANK;
+		}
+		
+	}
+	
+	
+	@RequestMapping("/removeFriendDynamicByDynamicId")
+	public String removeFriendDynamicByDynamicId(String dynamicId){
+		
+		String res = this.friendDynamicService.removeFriendDynamicByDynamicId(dynamicId);
+		
+		return WebResult.DYNAMIC_REMOVE_SUCCESS;
+	}
 }

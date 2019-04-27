@@ -28,4 +28,8 @@
 	<update id="updateFriendDynamicPraiseCountMinus" parameterType="string">
 		update friend_dynamic set praise_count=praise_count-1 where dynamic_id=#{dynamicId}
 	</update>
+	
+	<delete id="deleteFriendDynamicByDynamicId" parameterType="string">
+		delete from friend_dynamic where dynamic_id=#{dynamicId}
+	</delete>
 </mapper>

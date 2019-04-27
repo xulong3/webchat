@@ -16,4 +16,6 @@ public interface FriendDynamicService {
 	String modifyFriendDynamicPraiseCount(String dynamicId);
 	
 	String modifyFriendDynamicPraiseCountMinus(String dynamicId);
+	
+	String removeFriendDynamicByDynamicId(String dynamicId);
 }

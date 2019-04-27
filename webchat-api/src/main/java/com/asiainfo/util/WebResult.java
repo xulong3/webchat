@@ -79,6 +79,10 @@ public class WebResult {
 	
 	public static final String DYNAMIC_PUBLISH_SUCCESS="发表成功！";
 	
+	public static final String DYNAMIC_COMMENT_SUCCESS="评论成功！";
+	
+	public static final String DYNAMIC_REMOVE_SUCCESS="删除成功！";
+	
 	public static final String SUCCESS="success";
 	
 	public static final String FAIL="fail";
