@@ -55,11 +55,6 @@ $(function(){
 	loadFriendDetail();
 	$("#friend-detail-container").css('height',frame);
 	
-	
-	
-	
-	
-	
 	$("#to_chat_btn").click(function(){
 		//如果是第一次，创建聊天文件
 		$.ajax({
@@ -75,6 +70,24 @@ $(function(){
 			}
 			
 		});
+		
+		//保存或修改会话列表
+		$.ajax({
+			type:'post',
+			url:ctx+'/saveOrUpdateChatList',
+			data:{
+				account:userObj.account,
+				friendAccount:params.account
+			},
+			dataType:'text',
+			success:function(result){
+				
+			}
+			
+		});
+		
+		
+		
 		
 		var frame=parent.parent.$("iframe");
 		var showName=(friendVo.remark=='' ||  friendVo.remark==undefined)?

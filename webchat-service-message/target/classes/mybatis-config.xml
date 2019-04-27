@@ -9,7 +9,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.asiainfo.entity.User" alias="user"/>
 		<typeAlias type="com.asiainfo.entity.BaseException" alias="baseException"/>
 		<typeAlias type="com.asiainfo.entity.Friend" alias="friend"/>
-		
+		<typeAlias type="com.asiainfo.entity.ChatList" alias="chatList"/>
+		<typeAlias type="com.asiainfo.entity.FriendDynamic" alias="friendDynamic"/>
+		<typeAlias type="com.asiainfo.entity.FriendDynamicPraise" alias="friendDynamicPraise"/>
 	</typeAliases>
 	
 	

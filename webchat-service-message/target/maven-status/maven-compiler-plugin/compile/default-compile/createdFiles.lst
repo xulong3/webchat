@@ -1,3 +1,3 @@
 com\asiainfo\message\service\impl\FriendServiceImpl.class
-com\asiainfo\message\dao\FriendDao.class
 com\asiainfo\MessageServiceStarter.class
+com\asiainfo\message\dao\FriendDao.class

@@ -84,5 +84,8 @@
 		update label set label_value=#{labelValue} where account=#{account} and label_key=#{labelKey}
 	</update>
 	
+	<select id="selectSysLabelPortraitOne" parameterType="string" resultType="string">
+		select portrait from sys_label where account=#{account}
+	</select>
 	
 </mapper>

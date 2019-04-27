@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+
+#friend-dynamic{
+	padding: 0;
+	overflow-y: scroll;
+	height: 100%;
+	padding-top: 10px;
+}
+
+#dynamic-ul{
+	list-style: none;
+	padding-right: 80px;
+}
+
+.dynamic-li{
+	
+	padding-bottom: 20px;
+	border-bottom: 1px solid gray;
+	margin-bottom: 20px;
+}
+
+.img-div{
+	float: left;
+	width: 15%;
+	
+}
+
+.content-div{
+	float: left;
+	width: 85%;
+}
+
+.name-row{
+	
+	padding-bottom: 6px;
+	
+}
+
+.text-row{
+	padding-bottom: 10px;
+	
+}
+
+.praise-row{
+	padding-bottom: 5px;
+}
+
+
+.dynamic-img{
+	
+	width: 60px;
+	height: 60px;
+	border: 1px solid green;
+	border-radius: 5px;
+}
+
+.name-size{
+	font-size: 20px;
+}
+
+.my-dynamic{
+	padding-bottom: 10px;
+	border-bottom: 1px solid gray;
+}
+
+

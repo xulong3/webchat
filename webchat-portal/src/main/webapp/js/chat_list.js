@@ -5,6 +5,32 @@
 var params={};
 UrlSearch(params);
 
+if(params.account==undefined){
+	//查一下当前的会话列表
+	$.ajax({
+		type:'post',
+		url:ctx+'/getCurrentChatList',
+		async:false,
+		data:{
+			account:userObj.account
+			
+		},
+		dataType:'json',
+		success:function(result){
+			if(result==''){
+				return;
+			}
+			result=JSON.parse(result);
+			params.account=result.account;
+			params.portrait=result.portrait;
+			params.showName=(result.remark==undefined || result.remark=='')?result.nickname:result.remark;
+		}
+		
+	});
+}
+
+
+
 function loadTodayMsg(){
 	$.ajax({
 		type:'post',
@@ -50,6 +76,12 @@ function initTree(data){
 $(function(){
 	
 	$("#chat-list-container").css('height',frame);
+	if(params.account==undefined){
+		$("#list-content").append("<h2>当前没有任何会话!</h2>");
+		$("#chat-content").hide();
+		return;
+	}
+	
 	loadTodayMsg();
 	
 	//页面初始化
@@ -95,9 +127,9 @@ $(function(){
 						token:params.account
 					},
 					dataType:'text',
-					success:function(result){
+					success:function(data){
 						
-						if(result=="1"){
+						if(data=="1"){
 							
 							sendMsg(params.account,msg,result.sendTime);
 						}

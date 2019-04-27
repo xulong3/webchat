@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.message.dao.ChatListDao">
+
+	<resultMap type="com.asiainfo.entity.ChatList" id="chatListMap">
+		<id property="id" column="id"/>
+		<result property="account" column="account"/>
+		<result property="friendAccount" column="friend_account"/>
+		
+	</resultMap>
+
+ 
+	<select id="selectChatListCountByAccount" parameterType="string" resultType="int">
+		select count(1) from chat_list where account=#{account}
+	</select>
+	
+	<update id="updateChatList" parameterType="chatList">
+		update chat_list set friend_account=#{friendAccount} where account=#{account}
+	</update>
+	
+	<insert id="insertChatList" parameterType="chatList">
+		insert into chat_list(account,friend_account) values(#{account},#{friendAccount})
+	</insert>
+	
+	<select id="selectChatListByAccount" parameterType="string" resultMap="chatListMap">
+		select * from chat_list where account=#{account}
+	</select>
+</mapper>

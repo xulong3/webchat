@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.message.dao.FriendDynamicPraiseDao">
+
+	<resultMap type="com.asiainfo.entity.FriendDynamicPraise" id="friendDynamicPraiseMap">
+	
+		<id property="praiseId" column="praise_id"/>
+		<id property="dynamicId" column="dynamic_id"/>
+		<result property="praiseAccount" column="praise_account"/>
+		<result property="praiseTime" column="praise_time"/>
+		
+	</resultMap>
+
+ 	<insert id="insertFriendDynamicPraise" parameterType="friendDynamicPraise">
+ 		insert into friend_dynamic_praise(praise_id,dynamic_id,praise_account,praise_time) 
+ 		values(#{praiseId},#{dynamicId},#{praiseAccount},#{praiseTime})
+ 	</insert>
+ 	 
+ 	<select id="selectFriendDynamicPraiseCount" parameterType="friendDynamicPraise" resultType="int">
+ 		select count(1) from friend_dynamic_praise
+ 		where dynamic_id=#{dynamicId} and praise_account=#{praiseAccount}
+ 	</select>
+ 	
+ 	<delete id="deleteFriendDynamicPraise" parameterType="friendDynamicPraise">
+ 		delete from friend_dynamic_praise where dynamic_id=#{dynamicId} and praise_account=#{praiseAccount}
+ 	</delete>
+ 	
+</mapper>

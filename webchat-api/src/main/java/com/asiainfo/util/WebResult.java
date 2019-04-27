@@ -77,4 +77,14 @@ public class WebResult {
 	
 	public static final String FRIEND_APPLY_REFUSE_SUCCESS="拒绝成功！";
 	
+	public static final String DYNAMIC_PUBLISH_SUCCESS="发表成功！";
+	
+	public static final String SUCCESS="success";
+	
+	public static final String FAIL="fail";
+	
+	public static final String TRUE="true";
+	
+	public static final String FALSE="false";
+	
 }

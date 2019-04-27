@@ -234,6 +234,13 @@ public class LabelServiceImpl implements LabelService{
 			throw new RuntimeException();
 		}
 	}
+
+
+	@Override
+	public String querySysLabelPortraitOne(String account) {
+		
+		return this.labelDao.selectSysLabelPortraitOne(account);
+	}
 	
 	
 	

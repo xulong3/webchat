@@ -13,14 +13,14 @@
 </head>
 <body>
 	<div id="chat-list-container">
-		<div class="col-md-3" style="height: 100%;border-right: 1px solid green;padding:0; ">
+		<div id="list-content" class="col-md-3" style="height: 100%;border-right: 1px solid green;padding:0; ">
 		
 			<ul style="list-style: none;padding: 0;" id="chat-list-ul">
 				
 			</ul>
 		
 		</div>
-		<div class="col-md-9" style="height: 100%;padding: 0;overflow: hidden;">
+		<div id="chat-content" class="col-md-9" style="height: 100%;padding: 0;overflow: hidden;">
 			<div class="row" style="border-bottom: 1px solid green;margin: 0;height: 10.1%;background-color: #CDBE70;padding-left: 20px;">
 				<a id="open-history" href="javascript:void(0)">历史记录</a>
 				<h3 style="display: inline-block;margin-left: 630px;margin-top: 10px;"></h3>

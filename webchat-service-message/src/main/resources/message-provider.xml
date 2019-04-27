@@ -21,8 +21,14 @@
 
     <!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.asiainfo.message.service.FriendService" ref="friendService" />
+	<dubbo:service interface="com.asiainfo.message.service.ChatListService" ref="chatListService" />
+	<dubbo:service interface="com.asiainfo.message.service.FriendDynamicService" ref="friendDynamicService" />
+	<dubbo:service interface="com.asiainfo.message.service.FriendDynamicPraiseService" ref="friendDynamicPraiseService" />
 
 	<!-- 和本地bean一样实现服务 -->
     <bean name="friendService" class="com.asiainfo.message.service.impl.FriendServiceImpl" />
+    <bean name="chatListService" class="com.asiainfo.message.service.impl.ChatListServiceImpl" />
+    <bean name="friendDynamicService" class="com.asiainfo.message.service.impl.FriendDynamicServiceImpl" />
+    <bean name="friendDynamicPraiseService" class="com.asiainfo.message.service.impl.FriendDynamicPraiseServiceImpl" />
     
 </beans>

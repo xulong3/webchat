@@ -51,7 +51,11 @@ public class JsonUtil {
 		return jsonString;
 	}
 	
-	
+	public static <T> String listObjectToJsonString(List<T> list){
+		
+		String jsonString = JSON.toJSONString(list);
+		return jsonString;
+	}
 	
 	
 	

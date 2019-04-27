@@ -23,6 +23,15 @@ public class ConfigLabelServiceImpl implements ConfigLabelService{
 		
 		return this.configLabelDao.selectConfigLabelByAccount(account);
 	}
+	@Override
+	public String queryFriendCircleByAccount(String account) {
+		ConfigLabel cl = this.configLabelDao.selectConfigLabelByAccount(account);
+		if(cl==null){
+			return "-1";
+		}
+		return cl.getFriendCircle()+"";
+		
+	}
 
 	
 	

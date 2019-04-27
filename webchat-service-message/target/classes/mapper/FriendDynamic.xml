@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.asiainfo.message.dao.FriendDynamicDao">
+
+	<resultMap type="com.asiainfo.entity.FriendDynamic" id="friendDynamicMap">
+		<id property="dynamicId" column="dynamic_id"/>
+		<result property="account" column="account"/>
+		<result property="textContent" column="text_content"/>
+		<result property="publishTime" column="publish_time"/>
+		<result property="praiseCount" column="praise_count"/>
+		
+	</resultMap>
+
+ 	<insert id="insertFriendDynamic" parameterType="friendDynamic">
+ 		insert into friend_dynamic(dynamic_id,account,text_content,publish_time,praise_count) 
+ 		values(#{dynamicId},#{account},#{textContent},#{publishTime},#{praiseCount})
+ 	</insert>
+	
+	<select id="selectFriendDynamicByAccount" parameterType="string" resultMap="friendDynamicMap">
+		select * from friend_dynamic where account=#{account}
+	</select>
+	
+	<update id="updateFriendDynamicPraiseCount" parameterType="string">
+		update friend_dynamic set praise_count=praise_count+1 where dynamic_id=#{dynamicId}
+	</update>
+	
+	<update id="updateFriendDynamicPraiseCountMinus" parameterType="string">
+		update friend_dynamic set praise_count=praise_count-1 where dynamic_id=#{dynamicId}
+	</update>
+</mapper>

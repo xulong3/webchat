@@ -24,4 +24,5 @@ public interface LabelService {
 	
 	String modifyLabelValue(Label label);
 	
+	String querySysLabelPortraitOne(String account);
 }

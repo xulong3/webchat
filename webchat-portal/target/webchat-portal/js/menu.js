@@ -109,6 +109,10 @@ $(function(){
 				$("iframe").attr("src","chat_list.jsp");
 			}
 			
+			if($(this).text()=='朋友圈'){
+				
+				$("iframe").attr("src","friend_circle.jsp");
+			}
 			
 		});
 	});

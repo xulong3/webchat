@@ -23,4 +23,5 @@ public interface LabelDao {
 	
 	int updateLabelValue(Label label);
 	
+	String selectSysLabelPortraitOne(String account);
 }
