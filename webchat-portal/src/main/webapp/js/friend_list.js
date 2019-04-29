@@ -80,7 +80,7 @@ $(function(){
 				var showName=(result[index].remark=='' ||  result[index].remark==undefined)?
 						result[index].nickname:(result[index].remark+"("+result[index].nickname+")");
 				
-				$("#friend-list-ul").append("<li class='friend-li'>" 
+				$("#friend-list-ul").append("<li id='li-"+result[index].account+"' class='friend-li'>" 
 						+"<img class='friend-img' src='http://localhost:81"+result[index].portrait+"'>"
 						+"<div class='friend-info'><a href='javascript:void(0)' " 
 						+"onclick='loadFriendInfo("+result[index].account+")'>"

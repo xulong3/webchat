@@ -18,7 +18,7 @@
 		<div class="row" style="padding-left: 50px;margin-bottom: 20px;">
 			<input type="text" id="search-input" placeholder="搜索好友">
 			<img src="search.png" id="search-icon">
-			<button class="btn-success">搜索</button>
+			<button id="search-btn" class="btn-success">搜索</button>
 		</div>	
 		
 		<div class="row" style="padding-left: 50px;">

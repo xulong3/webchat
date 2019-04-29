@@ -231,4 +231,24 @@ $(function(){
 		
 	});
 	
+	
+	$("#search-btn").click(function(){
+		
+		var id=$("#search-input").val();
+		if(id==''){
+			parent.$("#friend-list-ul").children("li").each(function(){
+				$(this).show();
+			});
+		}else{
+			
+			parent.$("#friend-list-ul").children("li").each(function(){
+				if($(this).attr("id")!=("li-"+id)){
+					$(this).hide();
+				}
+			});
+		}
+		
+		
+	});
+	
 });

@@ -1,5 +1,7 @@
 package com.asiainfo.listener;
 
+import java.io.File;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,5 +35,20 @@ public class ExceptionListener extends HandlerExceptionResolverComposite{
 
 		
 		return mv;
+	}
+	
+	public static void main(String[] args) {
+		File f = new File("E:\\gdesign\\file-server-root");
+		File[] files = f.listFiles();
+		String aa="";
+		
+		for (File file : files) {
+			if(file.isDirectory()){
+				aa+=file.getName()+"\r\n";
+			}
+		}
+		
+		System.out.println(aa);
+		
 	}
 }
